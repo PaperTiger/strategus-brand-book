@@ -79,7 +79,7 @@ const BRAND = {
   /* ── Color palettes ───────────────────────────────────────── */
   colors: {
     primary: [
-      { name: "Primary Blue", hex: "#1CACFF", textColor: "#00346C" },
+      { name: "Primary Blue", hex: "#1CACFF", textColor: "#000000" },
       { name: "Dark Blue",    hex: "#00346C", textColor: "#FFFFFF" },
       { name: "Black",        hex: "#000000", textColor: "#FFFFFF" },
       { name: "White",        hex: "#FFFFFF", textColor: "#000000" },
@@ -146,24 +146,9 @@ const BRAND = {
       group: "Photography",
       items: [
         { label: "Introduction", id: "photo-intro" },
-        {
-          label: "Landscapes", id: "photo-landscape-examples",
-          groupId: "nav-landscape-group", subId: "nav-landscape-sub",
-          children: [
-            { label: "Examples",  id: "photo-landscape-examples" },
-            { label: "Dos",       id: "photo-landscape-dos" },
-            { label: "Don'ts",    id: "photo-landscape-donts" },
-          ],
-        },
-        {
-          label: "Community", id: "photo-community-examples",
-          groupId: "nav-community-photo-group", subId: "nav-community-photo-sub",
-          children: [
-            { label: "Examples",  id: "photo-community-examples" },
-            { label: "Dos",       id: "photo-community-dos" },
-            { label: "Don'ts",    id: "photo-community-donts" },
-          ],
-        },
+        { label: "Examples",     id: "photo-landscape-examples" },
+        { label: "Dos",          id: "photo-landscape-dos" },
+        { label: "Don'ts",       id: "photo-landscape-donts" },
       ],
     },
     {
