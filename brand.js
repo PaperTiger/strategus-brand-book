@@ -109,6 +109,7 @@ const BRAND = {
         { label: "Stacked logo",          id: "logo-stacked" },
         { label: "Logo mark",             id: "h-logo-mark" },
         { label: "Clear space &amp; sizing", id: "logo-size-guide" },
+        { label: "Avatar &amp; favicon",    id: "logo-avatar" },
         { label: "What to avoid",         id: "logo-avoid" },
       ],
     },
