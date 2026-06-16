@@ -386,16 +386,6 @@
         align-items: flex-start !important;
         gap: 6px !important;
       }
-      /* Prevent huge display text from overflowing its row */
-      .page [style*="font-size:96px"],
-      .page [style*="font-size:73px"],
-      .page [style*="font-size:64px"],
-      .page [style*="font-size:55px"],
-      .page [style*="font-size:48px"] {
-        font-size: clamp(36px, 12vw, 64px) !important;
-      }
-      .page [style*="font-size:42px"] { font-size: clamp(28px, 9vw, 42px) !important; }
-      .page [style*="font-size:32px"] { font-size: clamp(22px, 7vw, 32px) !important; }
 
       /* ─── Fix #4: Color pathways, sticky color name ─────────── */
       .resp-inset { margin: 0 0 48px !important; }
@@ -2426,19 +2416,19 @@
         <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--charcoal); margin-bottom:24px;">PolySans · Median · Display</div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">96</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:96px; line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal); overflow:hidden;" data-brand="specimens.display96">HCNJ</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(40px,10vw,96px); line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal);" data-brand="specimens.display96">HCNJ</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">73</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:73px; line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal);" data-brand="specimens.display73">Strategus</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(32px,7.6vw,73px); line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal);" data-brand="specimens.display73">Strategus</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">64</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:64px; line-height:0.9; letter-spacing:-0.02em; color:var(--charcoal);" data-brand="specimens.display64">Government that works</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(26px,6.7vw,64px); line-height:0.9; letter-spacing:-0.02em; color:var(--charcoal);" data-brand="specimens.display64">Government that works</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">48</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:48px; line-height:0.9; letter-spacing:-0.015em; color:var(--charcoal);" data-brand="specimens.display48">For every community in the country</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(22px,5vw,48px); line-height:0.9; letter-spacing:-0.015em; color:var(--charcoal);" data-brand="specimens.display48">For every community in the country</div>
         </div>
       </div>
 
@@ -2447,11 +2437,11 @@
         <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--charcoal); margin-bottom:24px;">PolySans · Median · Headlines</div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:14px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">42</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:600; font-size:42px; line-height:1; letter-spacing:-0.02em; color:var(--charcoal);" data-brand="specimens.headline42">Essential county services</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:600; font-size:clamp(24px,4.4vw,42px); line-height:1; letter-spacing:-0.02em; color:var(--charcoal);" data-brand="specimens.headline42">Essential county services</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:14px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">32</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:600; font-size:32px; line-height:1; letter-spacing:-0.015em; color:var(--charcoal);" data-brand="specimens.headline32">Services for 700,000 audiences</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:600; font-size:clamp(20px,3.3vw,32px); line-height:1; letter-spacing:-0.015em; color:var(--charcoal);" data-brand="specimens.headline32">Services for 700,000 audiences</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:14px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">24</div>
