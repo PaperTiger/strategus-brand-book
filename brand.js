@@ -5,87 +5,92 @@
 const BRAND = {
 
   meta: {
-    county:           "Hudson County, New Jersey",
-    nameLine1:        "Hudson County,",
-    nameLine2:        "New Jersey",
+    client:           "Strategus",
+    nameLine1:        "Strategus",
+    nameLine2:        "",
     title:            "Brand guidelines",
     version:          "Version 1.0",
     date:             "June 2026",
     preparedBy:       "Paper Tiger",
-    sidebarLogoImage: "images/logos/HCNJ_text_deep-teal.svg",
-    coverSealImage:   "images/logos/HCNJ_county-seal_deep-teal.svg",
+    sidebarLogoImage: "images/logos/strategus-logo-full-dark.svg",
+    coverSealImage:   "images/logos/strategus-logo-mark-light.svg",
   },
 
-  /* ── Type specimen copy ───────────────────────────────────── */
+  /* ── Type specimen copy (from Figma Brand Tokens → Typography) ── */
   specimens: {
-    // Display — Founders Grotesk Condensed Bold
-    display96:  "HCNJ",
-    display73:  "Hudson County",
-    display64:  "Government that works",
-    display48:  "For every community in New Jersey",
-    // Headlines — Founders Grotesk Semibold
-    headline42: "Essential county services",
-    headline32: "Services for 700,000 residents",
-    headline24: "Connecting people to their county government",
-    headline21: "Accessible government starts with clear communication",
-    // Body — Founders Grotesk Text (and fallback fonts)
-    body18:     "Hudson County provides essential services to more than 700,000 residents.",
-    body16:     "Hudson County provides essential services to more than 700,000 residents across 12 municipalities. Every document, every sign, every screen is a chance to make that relationship clearer and more trusted.",
-    body14:     "Hudson County provides essential services to more than 700,000 residents across 12 municipalities. Every document, every sign, every screen is a chance to make that relationship clearer and more trusted. The brand must function at every size, from street signage to digital interfaces.",
-    body12:     "Caption and supporting text. Hudson County provides essential services to more than 700,000 residents across 12 municipalities.",
-    sentence:   "Hudson County provides essential services to more than 700,000 residents across 12 municipalities.",
+    // Display — PolySans Median
+    display96:  "Strategus",
+    display73:  "Connected audio",
+    display64:  "Driving full-funnel results",
+    display48:  "Connected TV",
+    // Headlines — PolySans Median
+    headline42: "Mobile & display ads",
+    headline32: "Attribution & reporting",
+    headline24: "A pioneer in developing and delivering programmatic",
+    headline21: "100% return on investment",
+    // Body — Inter (and fallback fonts)
+    body18:     "Strategus is a pioneer in developing and delivering programmatic Connected TV.",
+    body16:     "Connected TV (CTV) campaigns take time, the right tools, and real expertise. That’s why we give you a full programmatic team — strategists, media buyers, and campaign managers.",
+    body14:     "Connected TV (CTV) campaigns take time, the right tools, and real expertise. That’s why we give you a full programmatic team — strategists, media buyers, and campaign managers — backed by a tech stack that’s always evolving. We constantly improve our data and platform partnerships.",
+    body12:     "Connected TV (CTV) campaigns take time, the right tools, and real expertise. That’s why we give you a full programmatic team.",
+    sentence:   "Strategus is a pioneer in developing and delivering programmatic Connected TV.",
     // "What to avoid" page specimens
-    avoidText:      "Hudson County is a county in the U.S. state of New Jersey, its smallest and most densely populated.",
-    avoidTextPart1: "Hudson County",
-    avoidTextPart2: "is a county in the U.S. state of New Jersey, its smallest and most densely populated.",
+    avoidText:      "Strategus is a pioneer in developing and delivering programmatic Connected TV advertising.",
+    avoidTextPart1: "Strategus",
+    avoidTextPart2: "is a pioneer in developing and delivering programmatic Connected TV advertising.",
     // Fallback font sections (sentence + generic note)
-    fallbackGoogle16: "Hudson County provides essential services to more than 700,000 residents across 12 municipalities. When brand fonts are unavailable, DM Sans provides a clean, modern alternative with excellent on-screen legibility.",
-    fallbackSystem16: "Hudson County provides essential services to more than 700,000 residents across 12 municipalities. When brand fonts are unavailable, Arial maintains clarity and legibility across all system environments.",
+    fallbackGoogle16: "Strategus is a pioneer in developing and delivering programmatic Connected TV. When brand fonts are unavailable, Inter provides a clean, modern alternative with excellent on-screen legibility.",
+    fallbackSystem16: "Strategus is a pioneer in developing and delivering programmatic Connected TV. When brand fonts are unavailable, Arial maintains clarity and legibility across all system environments.",
   },
 
   /* ── CSS custom properties ────────────────────────────────── */
   tokens: {
-    green:        "#003230",
-    teal:         "#74FBD7",
-    charcoal:     "#000913",
-    cream:        "#FAFAFA",
-    "warm-gray":  "#6B6B6B",
-    "light-gray": "#E3E3E3",
-    white:        "#FFFFFF",
-    blue:         "#0004F5",
-    yellow:       "#EBE825",
-    purple:       "#6B1262",
-    lime:         "#8AF161",
-    amaranth:     "#EB254D",
-    "deep-teal":  "#003230",
+    "primary-blue": "#1CACFF",
+    "dark-blue":    "#00346C",
+    charcoal:       "#000000",
+    white:          "#FFFFFF",
+    orange:         "#F8682C",
+    purple:         "#6D2EE2",
+    "pale-green":   "#C5FF98",
+    green:          "#27C35D",
+    fuscia:         "#CC1188",
+    gray:           "#F3F3F3",
   },
 
-  /* ── Font faces ───────────────────────────────────────────── */
+  /* ── Font faces ───────────────────────────────────────────────
+     Strategus type system (per Figma Brand Tokens → Typography):
+       Display + Headlines — PolySans Median
+       Body               — Inter (Regular / Semibold / Bold)
+     TODO: add the .woff2 files to fonts/ — PolySans is licensed
+     (supply from brand kit); Inter is free (Google Fonts / rsms.me).
+     Inter ships as one variable .ttf (covers all weights); PolySans
+     Median is a single .otf. */
   typography: {
     fonts: [
-      { family: "Founders Grotesk Condensed", weight: 700, file: "fonts/founders-grotesk-condensed-bold.woff2" },
-      { family: "Founders Grotesk",           weight: 500, file: "fonts/founders-grotesk-medium.woff2" },
-      { family: "Founders Grotesk",           weight: 600, file: "fonts/founders-grotesk-semibold.woff2" },
-      { family: "Founders Grotesk Text",      weight: 400, file: "fonts/founders-grotesk-text-regular.woff2" },
-      { family: "Founders Grotesk Text",      weight: 600, file: "fonts/founders-grotesk-text-semibold.woff2" },
+      // PolySans ships only the Median weight here; declare a weight RANGE so any
+      // requested weight renders the real Median glyphs (no faux-bold synthesis).
+      { family: "PolySans", weight: "100 900", file: "fonts/PolySansTrial-Median.otf" },
+      { family: "Inter",    weight: 400, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
+      { family: "Inter",    weight: 600, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
+      { family: "Inter",    weight: 700, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
     ],
   },
 
   /* ── Color palettes ───────────────────────────────────────── */
   colors: {
     primary: [
-      { name: "Liberty Green", hex: "#74FBD7", textColor: "#000913" },
-      { name: "Deep Teal",     hex: "#003230", textColor: "#74FBD7" },
-      { name: "Charcoal",      hex: "#000913", textColor: "#FFFFFF" },
-      { name: "White",         hex: "#FFFFFF", textColor: "#000913" },
+      { name: "Primary Blue", hex: "#1CACFF", textColor: "#00346C" },
+      { name: "Dark Blue",    hex: "#00346C", textColor: "#FFFFFF" },
+      { name: "Black",        hex: "#000000", textColor: "#FFFFFF" },
+      { name: "White",        hex: "#FFFFFF", textColor: "#000000" },
     ],
     secondary: [
-      { name: "Hudson Blue",  hex: "#0004F5", textColor: "#74FBD7" },
-      { name: "Purple",       hex: "#6B1262", textColor: "#FFFFFF" },
-      { name: "Flag Yellow",  hex: "#EBE825", textColor: "#000913" },
-      { name: "Green",        hex: "#8AF161", textColor: "#000913" },
-      { name: "Amaranth",     hex: "#EB254D", textColor: "#000913" },
-      { name: "Gray",         hex: "#E3E3E3", textColor: "#000913", outline: "1px solid #C8C8C8" },
+      { name: "Orange",     hex: "#F8682C", textColor: "#000000" },
+      { name: "Purple",     hex: "#6D2EE2", textColor: "#FFFFFF" },
+      { name: "Pale Green", hex: "#C5FF98", textColor: "#000000" },
+      { name: "Green",      hex: "#27C35D", textColor: "#000000" },
+      { name: "Fuscia",     hex: "#CC1188", textColor: "#FFFFFF" },
+      { name: "Gray",       hex: "#F3F3F3", textColor: "#000000", outline: "1px solid #DADADA" },
     ],
   },
 
@@ -100,32 +105,11 @@ const BRAND = {
     {
       group: "Logo &amp; mark",
       items: [
-        { label: "County seal", id: "logo-seal" },
-        {
-          label: "Full logo", id: "logo-horizontal",
-          groupId: "nav-full-logo-group", subId: "nav-full-logo-sub",
-          children: [
-            { label: "Horizontal",   id: "logo-horizontal" },
-            { label: "Stacked",      id: "logo-stacked" },
-            { label: "Text lockup",  id: "logo-text-only" },
-            { label: "Text only",    id: "logo-text-only-small" },
-            { label: "Size guide",   id: "logo-size-guide" },
-          ],
-        },
-        { label: "H logo mark", id: "h-logo-mark" },
-        {
-          label: "HCNJ logo", id: "hcnj-horizontal",
-          groupId: "nav-hcnj-group", subId: "nav-hcnj-sub",
-          children: [
-            { label: "Horizontal",    id: "hcnj-horizontal" },
-            { label: "Text lockup",   id: "hcnj-text-lockup" },
-            { label: "Text only",     id: "hcnj-text-only" },
-            { label: "Size guide",    id: "hcnj-size-guide" },
-          ],
-        },
-        { label: "Avatar &amp; favicon", id: "logo-avatar" },
-        { label: "What to avoid", id: "logo-avoid" },
-        { label: "Co-sponsorship lockup", id: "logo-cosponsor" },
+        { label: "Full logo",             id: "logo-horizontal" },
+        { label: "Stacked logo",          id: "logo-stacked" },
+        { label: "Logo mark",             id: "h-logo-mark" },
+        { label: "Clear space &amp; sizing", id: "logo-size-guide" },
+        { label: "What to avoid",         id: "logo-avoid" },
       ],
     },
     {
@@ -143,7 +127,7 @@ const BRAND = {
       items: [
         { label: "Introduction", id: "type-intro" },
         {
-          label: "Founders Grotesk", id: "fg-overview",
+          label: "PolySans &amp; Inter", id: "fg-overview",
           groupId: "nav-fg-group", subId: "nav-fg-sub",
           children: [
             { label: "Overview",      id: "fg-overview" },
@@ -186,7 +170,6 @@ const BRAND = {
       items: [
         { label: "Introduction",  id: "app-intro" },
         { label: "Swag",          id: "app-swag" },
-        { label: "Signage",       id: "app-signage" },
         { label: "Digital media", id: "app-digital" },
       ],
     },
@@ -228,10 +211,17 @@ function injectTokens() {
 
 /* Inject @font-face rules */
 function injectFonts() {
+  const fontFormat = (file) => {
+    if (file.endsWith(".woff2")) return "woff2";
+    if (file.endsWith(".woff"))  return "woff";
+    if (file.endsWith(".otf"))   return "opentype";
+    if (file.endsWith(".ttf"))   return "truetype";
+    return "woff2";
+  };
   const rules = BRAND.typography.fonts.map(f =>
     `@font-face {
       font-family: '${f.family}';
-      src: url('${f.file}') format('woff2');
+      src: url('${f.file}') format('${fontFormat(f.file)}');
       font-weight: ${f.weight};
       font-style: normal;
       font-display: swap;
@@ -384,7 +374,7 @@ function renderCoverMeta() {
 
 /* Fill data-brand (text) and data-brand-src (image src) from BRAND config */
 function renderContent() {
-  document.title = `${BRAND.meta.nameLine1} ${BRAND.meta.nameLine2}, Brand Identity`;
+  document.title = `${BRAND.meta.nameLine1}${BRAND.meta.nameLine2 ? " " + BRAND.meta.nameLine2 : ""}, Brand Identity`;
 
   document.querySelectorAll('[data-brand-src]').forEach(el => {
     const val = resolveKey(el.getAttribute('data-brand-src'));

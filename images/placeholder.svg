@@ -1,0 +1,11 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#ECEDEE"/>
+  <rect x="0.5" y="0.5" width="799" height="599" fill="none" stroke="#D9DADB"/>
+  <g transform="translate(400 270)" fill="none" stroke="#B4B6B8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-70" y="-52" width="140" height="104" rx="6"/>
+    <circle cx="-34" cy="-20" r="14"/>
+    <path d="M-70 38 L-22 -6 L8 24 L34 2 L70 34"/>
+  </g>
+  <text x="400" y="372" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="0.04em" fill="#9A9C9E">Image placeholder</text>
+  <text x="400" y="404" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" letter-spacing="0.08em" fill="#B4B6B8">STRATEGUS · PENDING ASSET</text>
+</svg>

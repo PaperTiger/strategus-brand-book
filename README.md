@@ -1,49 +1,65 @@
-# Hudson County Brand Identity Guide
+# Strategus Brand Identity Guide
 
-A self-contained digital brand book for Hudson County, NJ. Built as a single HTML file with a fixed sidebar navigation and fully responsive layout — no build tools or dependencies required.
+A self-contained digital brand book for **Strategus** — the managed Connected TV (CTV) advertising agency. Built as a single HTML file with a fixed sidebar navigation and fully responsive layout — no build tools or dependencies required.
 
 ## What's inside
 
-- **Logo & Mark** — County seal, full horizontal/stacked/text-only lockups, H logo mark
-- **HCNJ Logo** — Horizontal, text lockup, and text-only variations
-- **Color** — Primary and secondary palettes, approved color combinations, usage pathways
-- **Typography** — Founders Grotesk family overview, usage rules, type scale, fallback fonts, what to avoid
-- **Photography** — Landscape and community photography dos and don'ts
-- **Applications** — Swag, merchandise, and in-the-wild brand usage examples
-- **Icons** — Icon library
+- **Logo & mark** — Full logo, stacked logo, logo mark, clear space & sizing, what to avoid
+- **Color** — Primary and secondary palettes, approved combinations, usage pathways
+- **Typography** — PolySans Median & Inter overview, usage rules, type scale, fallback fonts, what to avoid
+- **Photography** — Direction and dos/don'ts *(placeholder imagery — pending Strategus assets)*
+- **Applications** — Collateral and in-the-wild usage *(placeholder mockups — pending Strategus assets)*
+- **Iconography** — Icon library *(placeholder set — pending Strategus icons)*
 
 ## Project structure
 
 ```
-hudson-brand-book/
-├── brand-identity.html   # The entire brand guide (single file)
-├── fonts/                # Founders Grotesk .woff2 files
-└── images/               # Logos (SVG), photography, brand-in-action assets
+strategus-brand-book/
+├── index.html        # The entire brand guide (single file)
+├── brand.js          # Single source of truth: tokens, type, color data, nav, meta
+├── sync-figma.js     # Pull tokens/logos from the Figma "Brand Tokens" file
+├── fonts/            # PolySans Median (.otf) + Inter (variable .ttf)
+└── images/logos/     # Strategus logo SVGs
 ```
 
 ## Usage
 
-Open `brand-identity.html` directly in any modern browser — no server needed. All fonts and images are loaded from relative paths, so keep the `fonts/` and `images/` folders alongside the HTML file.
+Open `index.html` directly in any modern browser — no server needed. Fonts and images load from relative paths, so keep `fonts/` and `images/` alongside the HTML file.
 
 ## Brand tokens
 
 | Token | Value | Usage |
 |---|---|---|
-| Green | `#003230` | Primary brand color |
-| Teal | `#74FBD7` | Accent / highlight |
-| Charcoal | `#000913` | Body text, dark backgrounds |
-| Cream | `#FAFAFA` | Light backgrounds |
-| Warm Gray | `#6B6B6B` | Secondary text |
-| Light Gray | `#E3E3E3` | Borders, dividers |
+| Primary Blue | `#1CACFF` | Primary brand color / accent |
+| Dark Blue | `#00346C` | Dark brand / depth |
+| Black | `#000000` | Body text, dark backgrounds |
+| White | `#FFFFFF` | Light backgrounds |
+| Orange | `#F8682C` | Secondary |
+| Purple | `#6D2EE2` | Secondary |
+| Pale Green | `#C5FF98` | Secondary |
+| Green | `#27C35D` | Secondary |
+| Fuscia | `#CC1188` | Secondary |
+| Gray | `#F3F3F3` | Surfaces, neutrals |
 
 ## Typography
 
-**Founders Grotesk** (Klim Type Foundry) is the brand typeface. Five weights are bundled:
+- **PolySans Median** — display and headlines
+- **Inter** (Regular / Semibold / Bold) — body copy
 
-- Founders Grotesk Condensed Bold — display / headlines
-- Founders Grotesk Medium — UI labels, navigation
-- Founders Grotesk Semibold — subheadings, emphasis
-- Founders Grotesk Text Regular — body copy
-- Founders Grotesk Text Semibold — body emphasis
+Inter is free (Google Fonts / rsms.me). PolySans is licensed — supply the production weights from the brand kit. (The repo currently bundles the PolySans **trial** weight.)
 
-Google Fonts fallback stack is documented within the guide for digital contexts where the licensed typeface is unavailable.
+## Figma sync
+
+Brand colors, typography, and logos live in the Figma **Brand Tokens** file (key `7YL5YDM3IMdS4Hk4we9l8j`). To re-pull:
+
+1. Copy `sync.config.example.json` → `sync.config.json` and add a Figma Personal Access Token with `file_content:read` scope.
+2. `node sync-figma.js pull-logos` — export logo SVGs from the Figma "Logos" page.
+
+> Note: the colors/typography `pull` command uses Figma's Variables REST API, which is **Enterprise-only**. On non-Enterprise accounts, read the values from the file directly (as was done here) instead.
+
+## Outstanding assets (gaps)
+
+- Reversed (white) logo lockups for dark / photographic backgrounds
+- Licensed PolySans production font files
+- Strategus photography, application mockups, and icon set
+- Download bundles: `downloads/strategus-fonts.zip`, `downloads/strategus-logos.zip`, `strategus-icon-set.zip`
