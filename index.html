@@ -202,7 +202,7 @@
       .fg-overview-left     { order: 2; margin-top: 24px; width: 100%; box-sizing: border-box; }
       .fg-overview-type     { margin-top: 0 !important; }
       .fg-overview-alpha-row { order: 3; margin-top: auto; padding-top: 32px; }
-      .fg-overview-type  { font-size: clamp(44px, 11vw, 72px) !important; margin-top: -0.08em !important; }
+      .fg-overview-type  { margin-top: -0.08em !important; }
 
       /* ─── Size & Scale ──────────────────────────────────────── */
       .fg-scale-layout {
@@ -456,8 +456,7 @@
       .resp-grid-3col { grid-template-columns: repeat(2, 1fr) !important; }
       .combo-grid { grid-template-columns: repeat(2, 1fr) !important; }
 
-      /* PolySans overview, tighten bleed text */
-      .fg-overview-type { font-size: clamp(60px, 11vw, 130px) !important; }
+      /* PolySans overview type scales fluidly with its column (cqi) */
 
       /* Type usage tables, compress fixed columns */
       .type-usage-grid { grid-template-columns: 140px 180px 1fr !important; }
@@ -2231,7 +2230,7 @@
 
   <!-- ── TYPEFACE OVERVIEW ────────────────────────── -->
   <div class="page" tabindex="-1" id="fg-overview">
-    <div class="fg-overview-grid" style="background:var(--dark-blue); min-height:100dvh; padding:36px 48px 56px; box-sizing:border-box; display:grid; grid-template-columns:300px 1fr; grid-template-rows:1fr auto; gap:0 48px; overflow:hidden;">
+    <div class="fg-overview-grid" style="background:var(--dark-blue); min-height:100dvh; padding:36px 48px 56px; box-sizing:border-box; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.7fr); grid-template-rows:1fr auto; gap:0 clamp(24px,4vw,48px); overflow:hidden;">
 
       <!-- Left col row 1: description pinned top -->
       <div class="fg-overview-left" style="grid-column:1; grid-row:1; font-family:'Inter',sans-serif; font-size:14px; line-height:1.4; color:var(--white); align-self:start;">
@@ -2244,15 +2243,15 @@
       </div>
 
       <!-- Right col row 1: large type -->
-      <div class="fg-overview-right" style="grid-column:2; grid-row:1;">
-        <div class="fg-overview-type" style="font-family:'PolySans',sans-serif; font-weight:500; font-size:clamp(80px,14vw,190px); line-height:0.9; letter-spacing:-0.03em; color:var(--white); white-space:nowrap; margin-top:-0.12em;">PolySans<br>Median</div>
+      <div class="fg-overview-right" style="grid-column:2; grid-row:1; container-type:inline-size;">
+        <div class="fg-overview-type" style="font-family:'PolySans',sans-serif; font-weight:500; font-size:clamp(40px,22cqi,190px); line-height:0.9; letter-spacing:-0.03em; color:var(--white); white-space:nowrap; margin-top:-0.12em;">PolySans<br>Median</div>
       </div>
 
       <!-- Right col row 2: alphabet pinned to bottom -->
-      <div class="fg-overview-alpha-row" style="grid-column:2; grid-row:2; padding-top:32px; border-top:1px solid rgba(255,255,255,0.25);">
-        <div style="font-family:'PolySans',sans-serif; font-weight:500; font-size:clamp(18px,3vw,42px); letter-spacing:-0.01em; color:var(--white); line-height:1.3;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-        <div style="font-family:'PolySans',sans-serif; font-weight:400; font-size:clamp(18px,3vw,42px); letter-spacing:-0.01em; color:var(--white); line-height:1.3;">abcdefghijklmnopqrstuvwxyz</div>
-        <div style="font-family:'Inter',sans-serif; font-weight:400; font-size:clamp(14px,2vw,28px); letter-spacing:-0.005em; color:var(--white); line-height:1.3;">1234567890!@#$%&amp;*.,;:/{}[]()?!</div>
+      <div class="fg-overview-alpha-row" style="grid-column:2; grid-row:2; container-type:inline-size; padding-top:32px; border-top:1px solid rgba(255,255,255,0.25);">
+        <div style="font-family:'PolySans',sans-serif; font-weight:500; font-size:clamp(15px,5.6cqi,42px); letter-spacing:-0.01em; color:var(--white); line-height:1.3;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+        <div style="font-family:'PolySans',sans-serif; font-weight:400; font-size:clamp(15px,5.6cqi,42px); letter-spacing:-0.01em; color:var(--white); line-height:1.3;">abcdefghijklmnopqrstuvwxyz</div>
+        <div style="font-family:'Inter',sans-serif; font-weight:400; font-size:clamp(12px,4.6cqi,28px); letter-spacing:-0.005em; color:var(--white); line-height:1.3;">1234567890!@#$%&amp;*.,;:/{}[]()?!</div>
       </div>
 
     </div>
@@ -2273,6 +2272,10 @@
       <a href="downloads/strategus-fonts.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:12px 20px; text-decoration:none; margin-top:24px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PolySans
+      </a>
+      <a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--charcoal); border:1px solid var(--charcoal); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:11px 20px; text-decoration:none; margin-top:24px; margin-left:12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Download Inter
       </a>
     </div>
 
