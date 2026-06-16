@@ -200,7 +200,7 @@
       .fg-overview-right    { order: 1; width: 100%; overflow: hidden; }
       .fg-overview-left     { order: 2; margin-top: 24px; width: 100%; box-sizing: border-box; }
       .fg-overview-type     { margin-top: 0 !important; }
-      .fg-overview-alpha-row { order: 3; margin-top: auto; padding-top: 32px; }
+      .fg-overview-alpha-row { order: 3; margin-top: 32px; padding-top: 32px; }
       .fg-overview-type  { margin-top: -0.08em !important; }
 
       /* ─── Size & Scale ──────────────────────────────────────── */
@@ -385,6 +385,14 @@
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 6px !important;
+      }
+
+      /* ─── Fluid section titles — prevent 3-line wraps on narrow screens ── */
+      .section-title { font-size: clamp(22px, 5.5vw, 34px) !important; line-height: 1.05 !important; }
+
+      /* ─── Logo "What to avoid" — 1 col so each example has full width ── */
+      #logo-avoid [style*="grid-template-columns:repeat(3"] {
+        grid-template-columns: 1fr !important;
       }
 
       /* ─── Fix #4: Color pathways, sticky color name ─────────── */
@@ -982,10 +990,12 @@
     .intro-body p:last-child { margin-bottom: 0; }
     @media (max-width: 768px) {
       .intro-layout {
-        height: calc(100dvh - 56px);
-        padding: 20px;
+        height: auto !important;
+        padding: 32px 20px 56px !important;
       }
-      .intro-statement { font-size: clamp(20px, 5vw, 32px); margin-top: 32px; }
+      /* Collapse the flex:1 spacer to a fixed gap on mobile */
+      .intro-layout > [style*="flex:1"] { flex: 0 0 32px !important; }
+      .intro-statement { font-size: clamp(20px, 5vw, 32px); margin-top: 16px; }
     }
 
     .cover-page.active { display: flex; }
@@ -1769,71 +1779,71 @@
       </div>
     </div>
 
-    <div style=”margin:0 32px 48px; display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--light-gray);”>
+    <div style="margin:0 32px 48px; display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--light-gray);">
 
       <!-- Don’t stretch -->
-      <div style=”border-right:1px solid var(--light-gray); border-bottom:1px solid var(--light-gray);”>
-        <div style=”background:#F8F8F8; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <img src=”images/logos/strategus-logo-full-dark.svg” alt=”” style=”height:36px; width:auto; transform:scaleX(1.6); transform-origin:center;”>
+      <div style="border-right:1px solid var(--light-gray); border-bottom:1px solid var(--light-gray);">
+        <div style="background:#F8F8F8; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="height:44px; width:auto; transform:scaleX(1.6); transform-origin:center;">
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t stretch or distort</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>Always scale proportionally. Never stretch, squash, or skew the logo.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t stretch or distort</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Always scale proportionally. Never stretch, squash, or skew the logo.</div>
         </div>
       </div>
 
       <!-- Don’t recolor -->
-      <div style=”border-right:1px solid var(--light-gray); border-bottom:1px solid var(--light-gray);”>
-        <div style=”background:#F8F8F8; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <img src=”images/logos/strategus-logo-full-dark.svg” alt=”” style=”height:36px; width:auto; filter:hue-rotate(80deg) saturate(200%) brightness(0.7);”>
+      <div style="border-right:1px solid var(--light-gray); border-bottom:1px solid var(--light-gray);">
+        <div style="background:#F8F8F8; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="height:44px; width:auto; filter:hue-rotate(80deg) saturate(200%) brightness(0.7);">
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t recolor</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>Use only approved logo colors. Don’t apply gradients, secondary palette colors, or off-brand tints.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t recolor</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Use only approved logo colors. Don’t apply gradients, secondary palette colors, or off-brand tints.</div>
         </div>
       </div>
 
       <!-- Don’t add effects -->
-      <div style=”border-bottom:1px solid var(--light-gray);”>
-        <div style=”background:#F8F8F8; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <img src=”images/logos/strategus-logo-full-dark.svg” alt=”” style=”height:36px; width:auto; filter:drop-shadow(3px 4px 10px rgba(0,0,0,0.55));”>
+      <div style="border-bottom:1px solid var(--light-gray);">
+        <div style="background:#F8F8F8; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="height:44px; width:auto; filter:drop-shadow(3px 4px 10px rgba(0,0,0,0.55));">
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t add effects</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>No shadows, glows, outlines, or bevels. The logo stays flat.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t add effects</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">No shadows, glows, outlines, or bevels. The logo stays flat.</div>
         </div>
       </div>
 
       <!-- Don’t rotate -->
-      <div style=”border-right:1px solid var(--light-gray);”>
-        <div style=”background:#F8F8F8; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <img src=”images/logos/strategus-logo-full-dark.svg” alt=”” style=”height:36px; width:auto; transform:rotate(-18deg); transform-origin:center;”>
+      <div style="border-right:1px solid var(--light-gray);">
+        <div style="background:#F8F8F8; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="height:44px; width:auto; transform:rotate(-18deg); transform-origin:center;">
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t rotate</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>Keep the logo level. Never set it on an angle or rotate the mark.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t rotate</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Keep the logo level. Never set it on an angle or rotate the mark.</div>
         </div>
       </div>
 
       <!-- Don’t use low contrast -->
-      <div style=”border-right:1px solid var(--light-gray);”>
-        <div style=”background:#001B38; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <img src=”images/logos/strategus-logo-full-dark.svg” alt=”” style=”height:36px; width:auto; opacity:0.35;”>
+      <div style="border-right:1px solid var(--light-gray);">
+        <div style="background:#001B38; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="height:44px; width:auto; opacity:0.35;">
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t use low contrast</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>Don’t place the dark logo on dark or busy backgrounds. Use the white version instead.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t use low contrast</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Don’t place the dark logo on dark or busy backgrounds. Use the white version instead.</div>
         </div>
       </div>
 
       <!-- Don’t rebuild the wordmark -->
       <div>
-        <div style=”background:#F8F8F8; height:130px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);”>
-          <span style=”font-family:Georgia, serif; font-size:28px; font-weight:700; color:#000; letter-spacing:-0.01em;”>Strategus</span>
+        <div style="background:#F8F8F8; height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--light-gray);">
+          <span style="font-family:Georgia, serif; font-size:28px; font-weight:700; color:#000; letter-spacing:-0.01em;">Strategus</span>
         </div>
-        <div style=”padding:20px 24px;”>
-          <div style=”font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;”>Don’t rebuild the wordmark</div>
-          <div style=”font-size:13px; color:var(--warm-gray); line-height:1.5;”>Never retype “Strategus” in another font. Always use the supplied logo artwork.</div>
+        <div style="padding:20px 24px;">
+          <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t rebuild the wordmark</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Never retype "Strategus" in another font. Always use the supplied logo artwork.</div>
         </div>
       </div>
 
