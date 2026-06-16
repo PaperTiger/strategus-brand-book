@@ -284,7 +284,14 @@ async function pullLogos(token, fileKey) {
   }
 
   const ids = frames.map(f => f.id).join(',');
-  const exportRes = await figmaGet(token, fileKey, `/images?ids=${ids}&format=svg&svg_include_id=false`);
+  // Render endpoint is /v1/images/:key (keyed by node id), NOT /v1/files/:key/images (image fills).
+  const exportRes = await fetch(
+    `https://api.figma.com/v1/images/${fileKey}?ids=${encodeURIComponent(ids)}&format=svg&svg_include_id=false`,
+    { headers: { 'X-Figma-Token': token } },
+  ).then(async r => {
+    if (!r.ok) throw new Error(`Figma image export → ${r.status}: ${await r.text()}`);
+    return r.json();
+  });
   const images = exportRes.images;
 
   const outDir = path.join(__dirname, 'images', 'logos');
