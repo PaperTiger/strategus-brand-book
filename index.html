@@ -572,6 +572,9 @@
     .main {
       margin-left: var(--sidebar-w);
       min-height: 100dvh;
+      /* min-width:0 stops this flex item from expanding to fit wide
+         tables — lets inner wrappers (.resp-inset etc.) scroll instead */
+      min-width: 0;
       @apply flex-1;
     }
 
@@ -1180,6 +1183,10 @@
       .main [style*="grid-template-columns: repeat(5"],
       .main [style*="grid-template-columns:repeat(6"],
       .main [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(3, 1fr) !important; }
+
+      /* wide reference tables scroll within their column on tablet too */
+      .fg-scale-table-wrap { min-width: 0 !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+      .fg-scale-layout > * { min-width: 0 !important; }
     }
     @media (max-width: 768px) {
       .main [style*="grid-template-columns:repeat(5"],
@@ -1195,8 +1202,14 @@
       /* tighten oversized horizontal margins on stacked sections */
       .main [style*="margin:0 32px"] { margin-left: 16px !important; margin-right: 16px !important; }
 
-      /* wide reference tables: scroll instead of squashing */
-      .type-usage-grid, .fg-scale-table-wrap { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+      /* wide reference tables: scroll within their own box instead of
+         pushing the page wide (min-width:0 defeats grid/flex auto-min) */
+      .page { overflow-x: hidden; }
+      .type-usage-grid, .fg-scale-table-wrap, .resp-inset {
+        display: block !important; max-width: 100% !important; min-width: 0 !important;
+        overflow-x: auto !important; -webkit-overflow-scrolling: touch;
+      }
+      .fg-scale-layout, .fg-scale-layout > * { min-width: 0 !important; }
     }
     @media (max-width: 480px) {
       .main [style*="grid-template-columns:repeat(5"],
