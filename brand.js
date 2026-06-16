@@ -108,7 +108,6 @@ const BRAND = {
         { label: "Full logo",             id: "logo-horizontal" },
         { label: "Stacked logo",          id: "logo-stacked" },
         { label: "Logo mark",             id: "h-logo-mark" },
-        { label: "Clear space &amp; sizing", id: "logo-size-guide" },
         { label: "Avatar &amp; favicon",    id: "logo-avatar" },
         { label: "What to avoid",         id: "logo-avoid" },
       ],
@@ -140,30 +139,6 @@ const BRAND = {
         { label: "Google fallback",  id: "google-fallback" },
         { label: "System fallback",  id: "type-fallback" },
         { label: "What to avoid",    id: "type-avoid" },
-      ],
-    },
-    {
-      group: "Photography",
-      items: [
-        { label: "Introduction", id: "photo-intro" },
-        { label: "Examples",     id: "photo-landscape-examples" },
-        { label: "Dos",          id: "photo-landscape-dos" },
-        { label: "Don'ts",       id: "photo-landscape-donts" },
-      ],
-    },
-    {
-      group: "Applications",
-      items: [
-        { label: "Introduction",  id: "app-intro" },
-        { label: "Swag",          id: "app-swag" },
-        { label: "Digital media", id: "app-digital" },
-      ],
-    },
-    {
-      group: "Iconography",
-      items: [
-        { label: "Introduction",  id: "icon-intro" },
-        { label: "Icon library",  id: "icon-library" },
       ],
     },
   ],
