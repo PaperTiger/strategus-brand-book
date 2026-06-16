@@ -167,7 +167,6 @@
       }
 
       .section-content {
-        padding: 36px 20px 48px !important;
         max-width: 100% !important;
       }
 
@@ -310,12 +309,6 @@
         padding-bottom: 32px !important;
       }
 
-      /* ─── Reduce inset section margins ─────────────────────── */
-      .page > [style*="margin:0 32px"] {
-        margin-left: 16px !important;
-        margin-right: 16px !important;
-      }
-
       /* ─── Page navigation ───────────────────────────────────── */
       .page-nav        { padding: 0 16px !important; margin-top: 48px !important; }
       .page-nav-label  { font-size: 14px !important; }
@@ -351,12 +344,6 @@
         padding: 12px 14px !important;
       }
 
-      /* ─── color-pathways / app pages - large margin blocks ──── */
-      .page > [style*="margin:0 32px 80px"] {
-        margin-left: 16px !important;
-        margin-right: 16px !important;
-      }
-
       /* ─── 280px+1fr two-col layouts (avatar, type, photo pages) */
       .page > [style*="grid-template-columns:280px 1fr"],
       .page > [style*="grid-template-columns: 280px 1fr"] {
@@ -380,11 +367,13 @@
       /* Don't create a scroll container, it causes iOS scroll delay  */
       .cs-outer {
         overflow: visible !important;
-        padding: 12px !important;
+        padding: 8px !important;
         touch-action: pan-y;
       }
+      /* Scale cs-zone proportionally on mobile so x ratio holds */
+      .cs-zone { padding: max(14px, calc(var(--cs-x, 36px) * 0.55)) !important; }
       /* Scale down large logos inside the diagram */
-      .cs-logo-box img { max-width: 100% !important; }
+      .cs-logo-box img { max-width: 100% !important; max-height: 80px !important; }
 
       /* ─── Fix #3: Hero images fill properly ─────────────────── */
       .page > [style*="padding:80px"] img {
@@ -408,11 +397,6 @@
       }
       .page [style*="font-size:42px"] { font-size: clamp(28px, 9vw, 42px) !important; }
       .page [style*="font-size:32px"] { font-size: clamp(22px, 7vw, 32px) !important; }
-      /* Specimen section container margin */
-      .page > [style*="margin:0 32px 80px"] {
-        margin-left: 16px !important;
-        margin-right: 16px !important;
-      }
 
       /* ─── Fix #4: Color pathways, sticky color name ─────────── */
       .resp-inset { margin: 0 0 48px !important; }
@@ -420,11 +404,13 @@
       .resp-inset > div > div:nth-child(11n+1):not(:first-child) {
         position: sticky;
         left: 0;
-        background: #fff;
         z-index: 2;
-        border-right: 1px solid var(--light-gray);
-        min-width: 80px;
+        min-width: 52px;
+        max-width: 60px;
+        padding-right: 6px !important;
       }
+      /* Narrow first column so more swatches are visible on mobile */
+      .resp-inset > div { grid-template-columns: 60px repeat(10, minmax(40px, 1fr)) !important; }
 
       /* ─── Fix #6: Size & scale horizontal scroll ─────────────── */
       .fg-scale-layout {
@@ -449,8 +435,7 @@
       .nav-group-header { padding: 10px 16px 5px !important; font-size: 12px !important; }
       .sidebar-label { font-size: 11px !important; }
 
-      /* Section content */
-      .section-content { padding: 32px 24px 48px !important; }
+      /* Section content — fluid clamp() handles this, no override needed */
 
       /* 3-col color grids → 2-col */
       .resp-grid-3col { grid-template-columns: repeat(2, 1fr) !important; }
@@ -488,9 +473,6 @@
     @media (min-width: 1025px) and (max-width: 1280px) {
       /* 3-col combo grid → 2-col at this size */
       .combo-grid { grid-template-columns: repeat(2, 1fr) !important; }
-
-      /* Tighten section padding */
-      .section-content { padding: 40px 32px 56px !important; }
 
       /* Size & scale, tighter gap */
       .fg-scale-layout { gap: 0 48px !important; }
@@ -628,7 +610,8 @@
 
     /* ─── Content ────────────────────────────────────────────── */
     .section-content {
-      @apply pt-[72px] px-8 pb-[80px] max-w-[900px];
+      padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 64px) clamp(40px, 6.5vw, 80px);
+      max-width: 900px;
     }
     .section-label {
       font-family: 'PolySans', sans-serif;
@@ -753,9 +736,25 @@
       align-items: start;
     }
 
+    /* ─── Fluid spacing: content inset blocks use clamp() ──────── */
+    .page > [style*="margin:0 32px"] {
+      margin-left: clamp(16px, 4vw, 32px) !important;
+      margin-right: clamp(16px, 4vw, 32px) !important;
+    }
+    /* Fluid palette swatch card padding */
+    #primary-palette-grid > div,
+    #secondary-palette-grid > div {
+      padding-left: clamp(20px, 4vw, 40px) !important;
+      padding-right: clamp(20px, 4vw, 40px) !important;
+      padding-top: clamp(20px, 3.5vw, 32px) !important;
+      padding-bottom: clamp(20px, 3.5vw, 32px) !important;
+      min-height: clamp(180px, 28vw, 384px) !important;
+    }
+
     /* ─── Color Swatches ─────────────────────────────────────── */
     .color-hero-strip {
-      @apply flex h-full min-h-[500px];
+      @apply flex h-full;
+      min-height: clamp(192px, 25vw, 384px);
     }
     .color-strip { @apply flex-1; }
 
@@ -1226,7 +1225,7 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- Mobile navigation header -->
   <div class="mobile-header" role="banner">
-    <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus" id="mobile-logo" style="height:22px; width:auto; cursor:pointer;" data-brand-src="meta.sidebarLogoImage">
+    <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus" id="mobile-logo" style="height:28px; width:auto; cursor:pointer;" data-brand-src="meta.sidebarLogoImage">
     <button class="hamburger" id="hamburger" aria-label="Open navigation">
       <span></span><span></span><span></span>
     </button>
@@ -1327,7 +1326,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
           <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
-          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
+          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals ½ the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
           <div class="mt-5 px-5 py-4" style="background:var(--cream); border-left:3px solid var(--primary-blue);">
             <div class="text-[11px] font-semibold tracking-[0.08em] uppercase text-[color:var(--charcoal)] mb-[6px]" style="font-family:'PolySans',sans-serif;">x = the height of the mark</div>
             <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">Never place competing text, images, or graphic elements inside this clear space, so the logo always reads cleanly.</div>
@@ -1335,7 +1334,7 @@
         </div>
         <div class="flex justify-center items-center">
           <div class="cs-outer">
-            <div class="cs-zone" style="--cs-x: 28px;">
+            <div class="cs-zone" style="--cs-x: 34px;">
               <div class="cs-logo-box">
                 <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus clear space" style="max-height:68px; width:auto; display:block;">
               </div>
@@ -1346,7 +1345,7 @@
             </div>
             <div class="cs-def">
               <span class="cs-def-x">x</span>
-              <span>= the height of the Strategus mark</span>
+              <span>= ½ the height of the Strategus mark</span>
             </div>
           </div>
         </div>
@@ -1443,7 +1442,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
           <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
-          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
+          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals ½ the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
           <div class="mt-5 px-5 py-4" style="background:var(--cream); border-left:3px solid var(--primary-blue);">
             <div class="text-[11px] font-semibold tracking-[0.08em] uppercase text-[color:var(--charcoal)] mb-[6px]" style="font-family:'PolySans',sans-serif;">x = the height of the mark</div>
             <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">Never place competing text, images, or graphic elements inside this clear space, so the logo always reads cleanly.</div>
@@ -1451,7 +1450,7 @@
         </div>
         <div class="flex justify-center items-center">
           <div class="cs-outer">
-            <div class="cs-zone" style="--cs-x: 40px;">
+            <div class="cs-zone" style="--cs-x: 75px;">
               <div class="cs-logo-box">
                 <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus clear space" style="max-height:150px; width:auto; display:block;">
               </div>
@@ -1462,7 +1461,7 @@
             </div>
             <div class="cs-def">
               <span class="cs-def-x">x</span>
-              <span>= the height of the Strategus mark</span>
+              <span>= ½ the height of the Strategus mark</span>
             </div>
           </div>
         </div>
@@ -1559,7 +1558,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
           <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
-          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
+          <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">x equals ½ the height of the Strategus mark. Maintain this distance on all four sides. On screen, round up to the nearest 8px grid unit.</div>
           <div class="mt-5 px-5 py-4" style="background:var(--cream); border-left:3px solid var(--primary-blue);">
             <div class="text-[11px] font-semibold tracking-[0.08em] uppercase text-[color:var(--charcoal)] mb-[6px]" style="font-family:'PolySans',sans-serif;">x = the height of the mark</div>
             <div class="text-[14px] text-[color:var(--charcoal)] leading-snug">Never place competing text, images, or graphic elements inside this clear space, so the logo always reads cleanly.</div>
@@ -1567,7 +1566,7 @@
         </div>
         <div class="flex justify-center items-center">
           <div class="cs-outer">
-            <div class="cs-zone" style="--cs-x: 44px;">
+            <div class="cs-zone" style="--cs-x: 60px;">
               <div class="cs-logo-box">
                 <img src="images/logos/strategus-logo-mark.svg" alt="Strategus clear space" style="max-height:120px; width:auto; display:block;">
               </div>
@@ -1578,7 +1577,7 @@
             </div>
             <div class="cs-def">
               <span class="cs-def-x">x</span>
-              <span>= the height of the Strategus mark</span>
+              <span>= ½ the height of the Strategus mark</span>
             </div>
           </div>
         </div>
@@ -1661,14 +1660,14 @@
       <div class="section-label">Logo &amp; mark</div>
       <h2 class="section-title">Clear space &amp; sizing</h2>
       <div class="section-body">
-        <p>Give the logo room. The minimum clear space on all four sides equals the height of the mark (x). Keep competing text, images, and graphics outside that zone so the logo always reads cleanly.</p>
+        <p>Give the logo room. The minimum clear space on all four sides equals half the height of the Strategus mark (x). Keep competing text, images, and graphics outside that zone so the logo always reads cleanly.</p>
       </div>
     </div>
 
     <div style="margin:0 32px 48px; display:grid; grid-template-columns:1fr 1fr; gap:48px;">
       <div style="border:1px solid var(--light-gray); padding:32px;">
         <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--charcoal); margin-bottom:16px;">Minimum clear space</div>
-        <div style="font-size:16px; color:var(--charcoal); line-height:var(--lh-body);">x = the height of the Strategus mark. Maintain at least 1x of empty space around the full logo, stacked logo, and mark. On screen, round up to the nearest 8px grid unit.</div>
+        <div style="font-size:16px; color:var(--charcoal); line-height:var(--lh-body);">x = ½ the height of the Strategus mark. Maintain at least 1x of empty space around the full logo, stacked logo, and mark. On screen, round up to the nearest 8px grid unit.</div>
       </div>
       <div style="border:1px solid var(--light-gray); padding:32px;">
         <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--charcoal); margin-bottom:16px;">Minimum size</div>
@@ -1837,15 +1836,17 @@
   <!-- ── COLOR INTRO ────────────────────────────────────────── -->
   <div class="page" tabindex="-1" id="color-intro">
 
-    <div class="color-hero-strip" style="min-height:384px;">
+    <div class="color-hero-strip" style="min-height:clamp(192px,25vw,384px);">
       <div class="color-strip" style="background:var(--primary-blue);"></div>
       <div class="color-strip" style="background:var(--dark-blue);"></div>
       <div class="color-strip" style="background:var(--charcoal);"></div>
-      <div class="color-strip" style="background:var(--white); border-left:1px solid var(--light-gray);"></div>
-      <div class="color-strip" style="background:var(--primary-blue);"></div>
+      <div class="color-strip" style="background:var(--white); border-left:1px solid var(--light-gray); border-right:1px solid var(--light-gray);"></div>
       <div class="color-strip" style="background:var(--orange);"></div>
       <div class="color-strip" style="background:var(--purple);"></div>
+      <div class="color-strip" style="background:var(--pale-green);"></div>
       <div class="color-strip" style="background:var(--green);"></div>
+      <div class="color-strip" style="background:var(--fuscia);"></div>
+      <div class="color-strip" style="background:var(--gray); border-right:1px solid var(--light-gray);"></div>
     </div>
 
     <div class="section-content">
@@ -2236,10 +2237,16 @@
       <div class="fg-overview-left" style="grid-column:1; grid-row:1; font-family:'Inter',sans-serif; font-size:14px; line-height:1.4; color:var(--white); align-self:start;">
         <p style="margin:0 0 14px;">PolySans is a contemporary grotesk with a confident, slightly humanist character. Its even rhythm and open apertures give Strategus headlines presence without shouting, modern, technical, and approachable, the way the brand sounds.</p>
         <p style="margin:0 0 24px;">It pairs with <strong>Inter</strong> for body copy: a workhorse screen typeface engineered for legibility at every size, from dashboard data to long-form copy. Together they cover display, headline, label, and body across every Strategus surface.</p>
-        <a href="downloads/strategus-fonts.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:12px 20px; text-decoration:none;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PolySans
-        </a>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:0;">
+          <a href="downloads/strategus-fonts.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--white); color:var(--dark-blue); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:12px 20px; text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PolySans
+          </a>
+          <a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.45); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:11px 20px; text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Download Inter
+          </a>
+        </div>
       </div>
 
       <!-- Right col row 1: large type -->
