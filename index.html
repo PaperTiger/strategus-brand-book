@@ -1168,6 +1168,41 @@
     }
 
     } /* end @layer components */
+
+    /* ════════════════════════════════════════════════════════════
+       Responsive safety net — stacks inline-styled grids that lack a
+       dedicated class (logo combos, clear space, avatars, favicons,
+       size-guide & don't cards, etc.). Wide data tables are excluded
+       by their column signatures and keep their own scroll handling.
+       ════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .main [style*="grid-template-columns:repeat(5"],
+      .main [style*="grid-template-columns: repeat(5"],
+      .main [style*="grid-template-columns:repeat(6"],
+      .main [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+    @media (max-width: 768px) {
+      .main [style*="grid-template-columns:repeat(5"],
+      .main [style*="grid-template-columns: repeat(5"],
+      .main [style*="grid-template-columns:repeat(6"],
+      .main [style*="grid-template-columns:repeat(4"],
+      .main [style*="grid-template-columns:repeat(3"],
+      .main [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+
+      .main [style*="grid-template-columns:1fr 1fr"],
+      .main [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+      /* tighten oversized horizontal margins on stacked sections */
+      .main [style*="margin:0 32px"] { margin-left: 16px !important; margin-right: 16px !important; }
+
+      /* wide reference tables: scroll instead of squashing */
+      .type-usage-grid, .fg-scale-table-wrap { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+    }
+    @media (max-width: 480px) {
+      .main [style*="grid-template-columns:repeat(5"],
+      .main [style*="grid-template-columns:repeat(6"],
+      .main [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1261,8 +1296,8 @@
   <!-- ── FULL LOGO ───────────────────────────────────────────── -->
   <div class="page" tabindex="-1" id="logo-horizontal">
 
-    <div style="background:var(--cream); border-bottom:1px solid var(--light-gray); padding:80px; display:flex; align-items:center; justify-content:center; min-height:420px;">
-      <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus full logo" style="max-height:150px; max-width:640px; width:auto; height:auto;">
+    <div style="background:var(--cream);" class="border-b border-[color:var(--light-gray)] p-10 sm:p-20 flex items-center justify-center min-h-[320px] sm:min-h-[420px]">
+      <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus full logo" style="max-height:150px;" class="max-w-full w-auto h-auto">
     </div>
 
     <div class="section-content">
@@ -1274,87 +1309,88 @@
       </div>
     </div>
 
-    <div style="margin:0 32px 48px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-12 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Clear space</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div style="font-weight:600; font-size:14px; color:var(--charcoal); margin-bottom:10px;">Minimum clear space = x</div>
-          <div style="font-size:14px; color:var(--warm-gray); line-height:1.5;">x equals the height of the mark’s inner square. Keep clear space of at least 1x — one full unit of the construction grid — on every side. No type, image, or graphic may cross the dashed boundary.</div>
+          <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
+          <div class="text-[14px] text-[color:var(--warm-gray)] leading-relaxed">x equals the height of the mark. Keep clear space of at least 1x on every side — the dashed boundary marks the closest any type, image, or graphic may come to the logo.</div>
         </div>
-        <div style="background:var(--cream); border:1px solid var(--light-gray); padding:56px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-          <div style="position:relative; padding:28px; background-image:repeating-linear-gradient(to right, rgba(0,0,0,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(to bottom, rgba(0,0,0,0.07) 0 1px, transparent 1px 28px); outline:1.5px dashed var(--primary-blue);">
-            <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus clear space" style="height:56px; width:auto; display:block; position:relative;">
-            <span style="position:absolute; top:0; left:50%; transform:translateX(-50%); height:28px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; bottom:0; left:50%; transform:translateX(-50%); height:28px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; left:0; top:50%; transform:translateY(-50%); width:28px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; right:0; top:50%; transform:translateY(-50%); width:28px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
+        <div style="background:var(--cream); padding:74px;" class="border border-[color:var(--light-gray)] flex items-center justify-center overflow-hidden">
+          <div class="relative inline-block" style="outline:1px solid rgba(0,0,0,0.18); line-height:0;">
+            <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus clear space" style="height:56px;" class="w-auto block">
+            <div class="absolute pointer-events-none" style="inset:-28px; border:1.5px dashed var(--primary-blue);"></div>
+            <span style="top:-14px; left:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="bottom:-14px; left:50%; transform:translate(-50%,50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="left:-14px; top:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="right:-14px; top:50%; transform:translate(50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="margin:0 32px 80px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-20 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Approved color combinations</div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0;">
-        <div style="background:#FFFFFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-0">
+        <div style="background:#FFFFFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">White</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">White</div>
         </div>
-        <div style="background:#F3F3F3; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F3F3F3;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Gray</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Gray</div>
         </div>
-        <div style="background:#C5FF98; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#C5FF98;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Pale Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Pale Green</div>
         </div>
-        <div style="background:#1CACFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#1CACFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Primary Blue</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Primary Blue</div>
         </div>
-        <div style="background:#F8682C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F8682C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Orange</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Orange</div>
         </div>
-        <div style="background:#27C35D; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#27C35D;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Green</div>
         </div>
-        <div style="background:#00346C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#00346C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Dark Blue</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Dark Blue</div>
         </div>
-        <div style="background:#000000; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#000000;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Black</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Black</div>
         </div>
-        <div style="background:#6D2EE2; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#6D2EE2;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Purple</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Purple</div>
         </div>
-        <div style="background:#CC1188; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-full-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#CC1188;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-full-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Fuscia</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Fuscia</div>
         </div>
       </div>
     </div>
@@ -1364,8 +1400,8 @@
   <!-- ── STACKED LOGO ───────────────────────────────────────────── -->
   <div class="page" tabindex="-1" id="logo-stacked">
 
-    <div style="background:var(--cream); border-bottom:1px solid var(--light-gray); padding:80px; display:flex; align-items:center; justify-content:center; min-height:420px;">
-      <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus stacked logo" style="max-height:300px; max-width:640px; width:auto; height:auto;">
+    <div style="background:var(--cream);" class="border-b border-[color:var(--light-gray)] p-10 sm:p-20 flex items-center justify-center min-h-[320px] sm:min-h-[420px]">
+      <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus stacked logo" style="max-height:300px;" class="max-w-full w-auto h-auto">
     </div>
 
     <div class="section-content">
@@ -1377,87 +1413,88 @@
       </div>
     </div>
 
-    <div style="margin:0 32px 48px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-12 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Clear space</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div style="font-weight:600; font-size:14px; color:var(--charcoal); margin-bottom:10px;">Minimum clear space = x</div>
-          <div style="font-size:14px; color:var(--warm-gray); line-height:1.5;">x equals the height of the mark’s inner square. Keep clear space of at least 1x — one full unit of the construction grid — on every side. No type, image, or graphic may cross the dashed boundary.</div>
+          <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
+          <div class="text-[14px] text-[color:var(--warm-gray)] leading-relaxed">x equals the height of the mark. Keep clear space of at least 1x on every side — the dashed boundary marks the closest any type, image, or graphic may come to the logo.</div>
         </div>
-        <div style="background:var(--cream); border:1px solid var(--light-gray); padding:56px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-          <div style="position:relative; padding:40px; background-image:repeating-linear-gradient(to right, rgba(0,0,0,0.07) 0 1px, transparent 1px 40px), repeating-linear-gradient(to bottom, rgba(0,0,0,0.07) 0 1px, transparent 1px 40px); outline:1.5px dashed var(--primary-blue);">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus clear space" style="height:132px; width:auto; display:block; position:relative;">
-            <span style="position:absolute; top:0; left:50%; transform:translateX(-50%); height:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; bottom:0; left:50%; transform:translateX(-50%); height:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; left:0; top:50%; transform:translateY(-50%); width:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; right:0; top:50%; transform:translateY(-50%); width:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
+        <div style="background:var(--cream); padding:82px;" class="border border-[color:var(--light-gray)] flex items-center justify-center overflow-hidden">
+          <div class="relative inline-block" style="outline:1px solid rgba(0,0,0,0.18); line-height:0;">
+            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus clear space" style="height:132px;" class="w-auto block">
+            <div class="absolute pointer-events-none" style="inset:-36px; border:1.5px dashed var(--primary-blue);"></div>
+            <span style="top:-18px; left:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="bottom:-18px; left:50%; transform:translate(-50%,50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="left:-18px; top:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="right:-18px; top:50%; transform:translate(50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="margin:0 32px 80px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-20 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Approved color combinations</div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0;">
-        <div style="background:#FFFFFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-0">
+        <div style="background:#FFFFFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">White</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">White</div>
         </div>
-        <div style="background:#F3F3F3; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F3F3F3;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Gray</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Gray</div>
         </div>
-        <div style="background:#C5FF98; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#C5FF98;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Pale Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Pale Green</div>
         </div>
-        <div style="background:#1CACFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#1CACFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Primary Blue</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Primary Blue</div>
         </div>
-        <div style="background:#F8682C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F8682C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Orange</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Orange</div>
         </div>
-        <div style="background:#27C35D; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#27C35D;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Green</div>
         </div>
-        <div style="background:#00346C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#00346C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Dark Blue</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Dark Blue</div>
         </div>
-        <div style="background:#000000; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#000000;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Black</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Black</div>
         </div>
-        <div style="background:#6D2EE2; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#6D2EE2;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Purple</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Purple</div>
         </div>
-        <div style="background:#CC1188; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#CC1188;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-stacked-dark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Fuscia</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Fuscia</div>
         </div>
       </div>
     </div>
@@ -1467,8 +1504,8 @@
   <!-- ── LOGO MARK ───────────────────────────────────────────── -->
   <div class="page" tabindex="-1" id="h-logo-mark">
 
-    <div style="background:var(--cream); border-bottom:1px solid var(--light-gray); padding:80px; display:flex; align-items:center; justify-content:center; min-height:420px;">
-      <img src="images/logos/strategus-logo-mark.svg" alt="Strategus logo mark" style="max-height:210px; max-width:640px; width:auto; height:auto;">
+    <div style="background:var(--cream);" class="border-b border-[color:var(--light-gray)] p-10 sm:p-20 flex items-center justify-center min-h-[320px] sm:min-h-[420px]">
+      <img src="images/logos/strategus-logo-mark.svg" alt="Strategus logo mark" style="max-height:210px;" class="max-w-full w-auto h-auto">
     </div>
 
     <div class="section-content">
@@ -1480,87 +1517,88 @@
       </div>
     </div>
 
-    <div style="margin:0 32px 48px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-12 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Clear space</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div style="font-weight:600; font-size:14px; color:var(--charcoal); margin-bottom:10px;">Minimum clear space = x</div>
-          <div style="font-size:14px; color:var(--warm-gray); line-height:1.5;">x equals one-third the height of the mark. Keep clear space of at least 1x — one full unit of the construction grid — on every side. No type, image, or graphic may cross the dashed boundary.</div>
+          <div class="font-semibold text-[14px] text-[color:var(--charcoal)] mb-[10px]">Minimum clear space = x</div>
+          <div class="text-[14px] text-[color:var(--warm-gray)] leading-relaxed">x equals the height of the mark. Keep clear space of at least 1x on every side — the dashed boundary marks the closest any type, image, or graphic may come to the logo.</div>
         </div>
-        <div style="background:var(--cream); border:1px solid var(--light-gray); padding:56px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-          <div style="position:relative; padding:40px; background-image:repeating-linear-gradient(to right, rgba(0,0,0,0.07) 0 1px, transparent 1px 40px), repeating-linear-gradient(to bottom, rgba(0,0,0,0.07) 0 1px, transparent 1px 40px); outline:1.5px dashed var(--primary-blue);">
-            <img src="images/logos/strategus-logo-mark.svg" alt="Strategus clear space" style="height:100px; width:auto; display:block; position:relative;">
-            <span style="position:absolute; top:0; left:50%; transform:translateX(-50%); height:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; bottom:0; left:50%; transform:translateX(-50%); height:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; left:0; top:50%; transform:translateY(-50%); width:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
-            <span style="position:absolute; right:0; top:50%; transform:translateY(-50%); width:40px; font-size:11px; font-weight:600; color:var(--primary-blue); background:var(--cream); padding:1px 5px; display:flex; align-items:center; justify-content:center;">x</span>
+        <div style="background:var(--cream); padding:86px;" class="border border-[color:var(--light-gray)] flex items-center justify-center overflow-hidden">
+          <div class="relative inline-block" style="outline:1px solid rgba(0,0,0,0.18); line-height:0;">
+            <img src="images/logos/strategus-logo-mark.svg" alt="Strategus clear space" style="height:110px;" class="w-auto block">
+            <div class="absolute pointer-events-none" style="inset:-40px; border:1.5px dashed var(--primary-blue);"></div>
+            <span style="top:-20px; left:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="bottom:-20px; left:50%; transform:translate(-50%,50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="left:-20px; top:50%; transform:translate(-50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
+            <span style="right:-20px; top:50%; transform:translate(50%,-50%); color:var(--primary-blue); background:var(--cream);" class="absolute text-[11px] font-semibold leading-none px-1 py-[2px]">x</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="margin:0 32px 80px; border-top:1px solid var(--light-gray); padding-top:48px;">
+    <div class="mx-5 sm:mx-8 mb-20 border-t border-[color:var(--light-gray)] pt-12">
       <div class="section-label">Approved color combinations</div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0;">
-        <div style="background:#FFFFFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-0">
+        <div style="background:#FFFFFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">White</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">White</div>
         </div>
-        <div style="background:#F3F3F3; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F3F3F3;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Gray</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Gray</div>
         </div>
-        <div style="background:#C5FF98; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#C5FF98;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Pale Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Pale Green</div>
         </div>
-        <div style="background:#1CACFF; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#1CACFF;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Primary Blue</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Primary Blue</div>
         </div>
-        <div style="background:#F8682C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#F8682C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Orange</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Orange</div>
         </div>
-        <div style="background:#27C35D; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-mark-light.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#27C35D;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-mark-light.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#000000; line-height:1.3;">Green</div>
+          <div style="color:#000000;" class="text-[13px] text-center leading-tight">Green</div>
         </div>
-        <div style="background:#00346C; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#00346C;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Dark Blue</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Dark Blue</div>
         </div>
-        <div style="background:#000000; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#000000;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Black</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Black</div>
         </div>
-        <div style="background:#6D2EE2; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#6D2EE2;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Purple</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Purple</div>
         </div>
-        <div style="background:#CC1188; padding:28px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; min-height:210px;">
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; min-height:104px;">
-            <img src="images/logos/strategus-logo-white.svg" alt="" style="max-width:90%; max-height:104px; width:auto; height:auto; display:block;">
+        <div style="background:#CC1188;" class="px-5 py-7 flex flex-col items-center gap-[18px] min-h-[210px]">
+          <div class="flex-1 flex items-center justify-center w-full min-h-[104px]">
+            <img src="images/logos/strategus-logo-white.svg" alt="" class="max-w-[90%] max-h-[104px] w-auto h-auto block">
           </div>
-          <div style="font-size:13px; text-align:center; color:#FFFFFF; line-height:1.3;">Fuscia</div>
+          <div style="color:#FFFFFF;" class="text-[13px] text-center leading-tight">Fuscia</div>
         </div>
       </div>
     </div>
@@ -1612,13 +1650,13 @@
       <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:680px;">
         <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
           <div style="width:100%; aspect-ratio:1; border-radius:50%; background:#F8682C; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus avatar on Orange" style="width:54%; height:auto;">
+            <img src="images/logos/strategus-logo-stacked-light.svg" alt="Strategus avatar on Orange" style="width:54%; height:auto;">
           </div>
           <div style="font-size:11px; color:var(--warm-gray); letter-spacing:0.04em;">Orange</div>
         </div>
         <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
           <div style="width:100%; aspect-ratio:1; border-radius:50%; background:#27C35D; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-            <img src="images/logos/strategus-logo-stacked-primary.svg" alt="Strategus avatar on Green" style="width:54%; height:auto;">
+            <img src="images/logos/strategus-logo-stacked-light.svg" alt="Strategus avatar on Green" style="width:54%; height:auto;">
           </div>
           <div style="font-size:11px; color:var(--warm-gray); letter-spacing:0.04em;">Green</div>
         </div>
@@ -3424,8 +3462,8 @@ async function downloadAvatarZip(btn) {
   btn.innerHTML = 'Generating…';
 
   const avatars = [
-    { bg: '#F8682C', logo: 'images/logos/strategus-logo-stacked-primary.svg', name: 'avatar-orange.png' },
-    { bg: '#27C35D', logo: 'images/logos/strategus-logo-stacked-primary.svg', name: 'avatar-green.png' },
+    { bg: '#F8682C', logo: 'images/logos/strategus-logo-stacked-light.svg', name: 'avatar-orange.png' },
+    { bg: '#27C35D', logo: 'images/logos/strategus-logo-stacked-light.svg', name: 'avatar-green.png' },
     { bg: '#00346C', logo: 'images/logos/strategus-logo-stacked-dark.svg',    name: 'avatar-dark-blue.png' },
     { bg: '#000000', logo: 'images/logos/strategus-logo-stacked-dark.svg',    name: 'avatar-black.png' },
   ];
