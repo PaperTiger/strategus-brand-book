@@ -1,8 +1,19 @@
 # Brand Book — Claude Guide
 
-Single-file brand book. All content lives in `index.html` (~3,400 lines). `brand.js` is the single source of truth for tokens, type, color, nav, and metadata — edit tokens/copy there, never in `index.html` directly.
+Single-file brand book. All content lives in `index.html` (~3,400 lines). `brand.js` is the single source of truth for tokens, type, color, nav, and metadata. Edit tokens/copy there, never in `index.html` directly.
 
 Preview server: `brand-book` on port 8743 (defined in `.claude/launch.json`).
+
+---
+
+## Writing style rules (apply everywhere in this codebase)
+
+**No em dashes.** Never write `—` in any user-visible text (headings, body copy, labels, captions, or nav labels). Use these alternatives instead:
+- Introductory or explanatory clauses: use a colon (`:`)
+- Parenthetical asides: use commas or parentheses
+- Two separate thoughts: use a period and start a new sentence
+
+**Sentence case always.** Headings, nav labels, section titles, and button text use sentence case: capitalize the first word and proper nouns only.
 
 ---
 
