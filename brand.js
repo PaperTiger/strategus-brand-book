@@ -45,6 +45,7 @@ const BRAND = {
 
   /* ── CSS custom properties ────────────────────────────────── */
   tokens: {
+    "lh-body":      "1.4",
     "primary-blue": "#1CACFF",
     "dark-blue":    "#00346C",
     charcoal:       "#000000",
@@ -66,6 +67,8 @@ const BRAND = {
      Inter ships as one variable .ttf (covers all weights); PolySans
      Median is a single .otf. */
   typography: {
+    displayFont: "PolySans",
+    bodyFont:    "Inter",
     fonts: [
       { family: "PolySans", weight: "100 900", file: "fonts/Polysans - Licensed/woff2/PolySans-Median.woff2" },
       { family: "Inter",    weight: 400, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
@@ -88,7 +91,7 @@ const BRAND = {
       { name: "Pale Green", hex: "#C5FF98", textColor: "#000000" },
       { name: "Green",      hex: "#27C35D", textColor: "#000000" },
       { name: "Fuscia",     hex: "#CC1188", textColor: "#FFFFFF" },
-      { name: "Gray",       hex: "#F3F3F3", textColor: "#000000", outline: "1px solid #DADADA" },
+      { name: "Gray",       hex: "#F3F3F3", textColor: "#000000" },
     ],
   },
 
@@ -174,8 +177,12 @@ function injectTokens() {
 }
 
 
-/* Inject @font-face rules */
+/* Inject @font-face rules and font family CSS variables */
 function injectFonts() {
+  const t = BRAND.typography;
+  const varStyle = document.createElement("style");
+  varStyle.textContent = `:root { --display-font: '${t.displayFont}'; --body-font: '${t.bodyFont}'; }`;
+  document.head.appendChild(varStyle);
   const fontFormat = (file) => {
     if (file.endsWith(".woff2")) return "woff2";
     if (file.endsWith(".woff"))  return "woff";
@@ -309,7 +316,7 @@ function renderPalette(containerId, colors, minHeight) {
   }
 
   const html = colors.map(c => `
-    <div style="background:${c.hex}; padding:32px 40px; display:flex; flex-direction:column; justify-content:space-between; min-height:${minHeight}px;${c.outline ? " box-shadow:inset 0 0 0 1px #C8C8C8;" : ""}">
+    <div style="background:${c.hex}; padding:32px 40px; display:flex; flex-direction:column; justify-content:space-between; min-height:${minHeight}px;${c.hex.toLowerCase() === '#ffffff' ? " box-shadow:inset 0 0 0 1px #C8C8C8;" : ""}">
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:24px;">
         <div style="width:8px; height:8px; border-radius:50%; background:${c.textColor}; flex-shrink:0;"></div>
         <span style="font-size:16px; font-weight:600; color:${c.textColor}; letter-spacing:0.02em; line-height:1; font-family:inherit;">${c.name}</span>

@@ -52,7 +52,6 @@
     @layer base {
       :root {
         --sidebar-w:    248px;
-        --lh-body:      1.4;
         --lh-headline:  0.9;
         --ease:         cubic-bezier(.4,0,.2,1);
         /* UI neutrals (not brand tokens, brand colors come from brand.js) */
@@ -80,7 +79,7 @@
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; overflow-x: hidden; }
       body {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-family: var(--body-font), system-ui, -apple-system, sans-serif;
         background: var(--cream);
         color: var(--charcoal);
         display: flex;
@@ -504,7 +503,7 @@
       @apply p-6 flex-shrink-0;
     }
     .sidebar-wordmark {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--dark-blue);
       @apply font-black text-[26px] tracking-[0.02em] leading-none block;
     }
@@ -518,7 +517,7 @@
       @apply py-[14px];
     }
     .nav-group-header {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--body-font), sans-serif;
       color: var(--charcoal);
       @apply text-[11px] font-semibold tracking-[0.08em] uppercase leading-none px-6 pb-2;
     }
@@ -590,7 +589,7 @@
       @apply text-[11px] font-semibold tracking-[0.1em] uppercase;
     }
     .page-nav-label {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       @apply text-[17px] font-medium leading-[1.1];
     }
     .page-nav-next { @apply text-right items-end; }
@@ -622,15 +621,18 @@
       max-width: 900px;
     }
     .section-label {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
       line-height: 1;
       @apply text-[11px] font-semibold tracking-[0.08em] uppercase mb-[14px];
     }
     .section-title {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
-      @apply font-semibold text-[34px] leading-none mb-7;
+      font-weight: 600;
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 28px;
     }
     .section-body {
       color: var(--charcoal);
@@ -642,7 +644,7 @@
 
     /* ─── Pull Quote ─────────────────────────────────────────── */
     .pull-quote {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--dark-blue);
       border-left: 4px solid var(--primary-blue);
       line-height: var(--lh-body);
@@ -660,7 +662,7 @@
       @apply py-7 px-6;
     }
     .trait-yes {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--dark-blue);
       @apply font-extrabold text-[22px] tracking-[0.01em] leading-none;
     }
@@ -681,12 +683,12 @@
       grid-template-columns: 32px 1fr;
     }
     .principle-num {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--primary-blue);
       @apply text-[13px] font-bold pt-[3px];
     }
     .principle-name {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
       @apply font-semibold text-[16px] mb-[6px];
     }
@@ -702,7 +704,7 @@
 
     /* ─── Wordmark Display ───────────────────────────────────── */
     .wordmark-hero-text {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--white);
       font-size: clamp(80px, 16vw, 200px);
       @apply font-black tracking-[-0.01em] leading-none text-center;
@@ -733,7 +735,7 @@
       @apply text-[11px] font-medium tracking-[0.08em] uppercase mt-auto;
     }
     .color-mode-wordmark {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       line-height: var(--lh-headline);
       @apply font-black text-[42px] tracking-[0.01em];
     }
@@ -808,21 +810,21 @@
       @apply flex flex-col items-start justify-center p-[80px] gap-0;
     }
     .type-sample-xl {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--white);
       font-size: clamp(60px, 10vw, 140px);
       line-height: var(--lh-headline);
       @apply font-black tracking-[-0.01em];
     }
     .type-sample-lg {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--primary-blue);
       font-size: clamp(30px, 5vw, 60px);
       line-height: var(--lh-headline);
       @apply font-bold mt-4;
     }
     .type-sample-body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--body-font), sans-serif;
       color: var(--cream);
       line-height: var(--lh-body);
       @apply font-normal text-[18px] max-w-[540px] mt-6;
@@ -881,7 +883,7 @@
       @apply text-[11px] font-semibold tracking-[0.12em] uppercase mb-3;
     }
     .app-name {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
       @apply font-semibold text-[20px] mb-[10px];
     }
@@ -891,7 +893,7 @@
       @apply text-[13px];
     }
     .app-mark {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       @apply mt-6 font-black text-[32px] tracking-[0.01em];
     }
 
@@ -909,7 +911,7 @@
       grid-template-columns: repeat(4, 1fr);
     }
     .market {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--white);
       border-top: 1px solid rgba(255,255,255,0.2);
       @apply font-bold text-[18px] tracking-[0.03em] py-[10px] uppercase;
@@ -938,7 +940,7 @@
       @apply flex items-center min-h-[320px] p-[80px];
     }
     .statement-text {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
       font-size: clamp(28px, 4vw, 52px);
       @apply font-bold leading-none max-w-[800px] tracking-[-0.01em];
@@ -954,7 +956,7 @@
       @apply py-[100px] px-8;
     }
     .final-text {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       font-size: clamp(18px, 2.5vw, 28px);
       color: var(--cream);
       line-height: var(--lh-body);
@@ -982,16 +984,20 @@
       @apply flex flex-col h-dvh p-8 box-border;
     }
     .intro-statement {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: var(--charcoal);
       font-size: clamp(24px, 3.2vw, 48px);
-      @apply font-normal leading-none tracking-[-0.02em] max-w-[960px] mt-12;
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      max-width: 960px;
+      margin-top: 48px;
     }
     .intro-body {
       @apply max-w-[520px];
     }
     .intro-body p {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--body-font), sans-serif;
       color: var(--charcoal);
       line-height: var(--lh-body);
       @apply text-[16px] mb-[14px];
@@ -1013,13 +1019,13 @@
       @apply flex-col min-h-dvh h-dvh p-8 box-border;
     }
     .cover-title {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       font-size: clamp(52px, 7.5vw, 116px);
       line-height: var(--lh-headline);
       @apply font-light tracking-[-0.025em];
     }
     .cover-meta {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       color: #000000;
       @apply text-[16px] leading-[1.3] tracking-[0.04em];
     }
@@ -1130,7 +1136,7 @@
       top: 50%;
       left: 7px;
       transform: translateY(-50%);
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       font-weight: 700;
       font-size: 11px;
       color: var(--charcoal);
@@ -1141,7 +1147,7 @@
       left: 50%;
       bottom: 6px;
       transform: translateX(-50%);
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       font-weight: 700;
       font-size: 11px;
       color: var(--charcoal);
@@ -1149,7 +1155,7 @@
     }
     /* Definition row under the diagram */
     .cs-def {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--body-font), sans-serif;
       color: var(--charcoal);
       display: flex;
       align-items: center;
@@ -1158,7 +1164,7 @@
       font-size: 12px;
     }
     .cs-def-x {
-      font-family: 'PolySans', sans-serif;
+      font-family: var(--display-font), sans-serif;
       background: color-mix(in srgb, var(--primary-blue) 50%, transparent);
       color: var(--charcoal);
       font-weight: 700;
@@ -1247,6 +1253,7 @@
       .main [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
     }
   </style>
+  <link rel="icon" type="image/svg+xml" href="images/logos/strategus-logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
@@ -1814,7 +1821,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t stretch or distort</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Always scale proportionally. Never stretch, squash, or skew the logo.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">Always scale proportionally. Never stretch, squash, or skew the logo.</div>
         </div>
       </div>
 
@@ -1825,7 +1832,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t recolor</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Use only approved logo colors. Don’t apply gradients, secondary palette colors, or off-brand tints.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">Use only approved logo colors. Don’t apply gradients, secondary palette colors, or off-brand tints.</div>
         </div>
       </div>
 
@@ -1836,7 +1843,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t add effects</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">No shadows, glows, outlines, or bevels. The logo stays flat.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">No shadows, glows, outlines, or bevels. The logo stays flat.</div>
         </div>
       </div>
 
@@ -1847,7 +1854,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t rotate</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Keep the logo level. Never set it on an angle or rotate the mark.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">Keep the logo level. Never set it on an angle or rotate the mark.</div>
         </div>
       </div>
 
@@ -1858,7 +1865,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t use low contrast</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Don’t place the dark logo on dark or busy backgrounds. Use the white version instead.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">Don’t place the dark logo on dark or busy backgrounds. Use the white version instead.</div>
         </div>
       </div>
 
@@ -1869,7 +1876,7 @@
         </div>
         <div style="padding:20px 24px;">
           <div style="font-family:’PolySans’,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; color:#CC1188; text-transform:uppercase; margin-bottom:8px;">Don’t rebuild the wordmark</div>
-          <div style="font-size:13px; color:var(--warm-gray); line-height:1.5;">Never retype "Strategus" in another font. Always use the supplied logo artwork.</div>
+          <div style="font-size:13px; color:var(--warm-gray); line-height:var(--lh-body);">Never retype "Strategus" in another font. Always use the supplied logo artwork.</div>
         </div>
       </div>
 
@@ -1981,7 +1988,7 @@
           </div>
         </div>
       </div>
-      <div style="background:#FFFFFF; padding:40px 32px 32px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px;">
+      <div style="background:#FFFFFF; padding:40px 32px 32px; display:flex; flex-direction:column; justify-content:space-between; min-height:300px; box-shadow:inset 0 0 0 1px #C8C8C8;">
         <img src="images/logos/strategus-logo-full-dark.svg" alt="Strategus" style="width:100%; max-width:200px; height:auto;">
         <div style="margin-top:32px;">
           <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; color:#000000; margin-bottom:8px;">White / Black</div>
@@ -2277,7 +2284,7 @@
     <div class="fg-overview-grid" style="background:var(--dark-blue); min-height:100dvh; padding:36px 48px 56px; box-sizing:border-box; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.7fr); grid-template-rows:1fr auto; gap:0 clamp(24px,4vw,48px); overflow:hidden;">
 
       <!-- Left col row 1: description pinned top -->
-      <div class="fg-overview-left" style="grid-column:1; grid-row:1; font-family:'Inter',sans-serif; font-size:14px; line-height:1.4; color:var(--white); align-self:start;">
+      <div class="fg-overview-left" style="grid-column:1; grid-row:1; font-family:'Inter',sans-serif; font-size:14px; line-height:var(--lh-body); color:var(--white); align-self:start;">
         <p style="margin:0 0 14px;">PolySans is a contemporary grotesk with a confident, slightly humanist character. Its even rhythm and open apertures give Strategus headlines presence without shouting, modern, technical, and approachable, the way the brand sounds.</p>
         <p style="margin:0 0 24px;">It pairs with <strong>Inter</strong> for body copy: a workhorse screen typeface engineered for legibility at every size, from dashboard data to long-form copy. Together they cover display, headline, label, and body across every Strategus surface.</p>
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:0;">
@@ -2521,7 +2528,7 @@
     <div class="fg-scale-layout" style="display:grid; grid-template-columns:260px 1fr; gap:0 80px; padding:56px 48px 80px; box-sizing:border-box; align-items:start;">
 
       <!-- Left: description & formula -->
-      <div class="fg-scale-desc" style="font-family:'Inter',sans-serif; font-size:14px; line-height:1.55; color:var(--charcoal);">
+      <div class="fg-scale-desc" style="font-family:'Inter',sans-serif; font-size:14px; line-height:var(--lh-body); color:var(--charcoal);">
         <p style="margin:0 0 28px;">The type sizes in the system are derived from a mathematical formula which systematizes traditional type sizes. It utilizes a pentatonic scale. This means the type size doubles every five steps.</p>
 
         <div style="margin-bottom:6px; font-weight:500; font-family:'PolySans',sans-serif;">Pentatonic</div>
@@ -2753,7 +2760,7 @@
         <div>Capitalization: Sentence case</div>
       </div>
       <div style="padding:40px 48px; border-bottom:1px solid var(--light-gray); display:flex; align-items:flex-start;">
-        <div style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:18px; line-height:1.4; color:var(--charcoal); max-width:520px;" data-brand="specimens.sentence">Strategus provides essential services to more than 700,000 audiences across 12 markets.</div>
+        <div style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:18px; line-height:var(--lh-body); color:var(--charcoal); max-width:520px;" data-brand="specimens.sentence">Strategus provides essential services to more than 700,000 audiences across 12 markets.</div>
       </div>
 
       <!-- Regular -->
@@ -2769,7 +2776,7 @@
         <div>Capitalization: Sentence case</div>
       </div>
       <div style="padding:40px 48px; display:flex; align-items:flex-start;">
-        <div style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:16px; line-height:1.4; color:var(--charcoal); max-width:520px;" data-brand="specimens.fallbackGoogle16">Strategus provides essential services to more than 700,000 audiences across 12 markets. When brand fonts are unavailable, DM Sans provides a clean, modern alternative with excellent on-screen legibility.</div>
+        <div style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:16px; line-height:var(--lh-body); color:var(--charcoal); max-width:520px;" data-brand="specimens.fallbackGoogle16">Strategus provides essential services to more than 700,000 audiences across 12 markets. When brand fonts are unavailable, DM Sans provides a clean, modern alternative with excellent on-screen legibility.</div>
       </div>
 
     </div>
@@ -2821,7 +2828,7 @@
         <div>Capitalization: Sentence case</div>
       </div>
       <div style="padding:40px 48px; border-bottom:1px solid var(--light-gray); display:flex; align-items:flex-start;">
-        <div style="font-family:Arial,sans-serif; font-weight:400; font-size:18px; line-height:1.4; color:var(--charcoal); max-width:520px;" data-brand="specimens.sentence">Strategus provides essential services to more than 700,000 audiences across 12 markets.</div>
+        <div style="font-family:Arial,sans-serif; font-weight:400; font-size:18px; line-height:var(--lh-body); color:var(--charcoal); max-width:520px;" data-brand="specimens.sentence">Strategus provides essential services to more than 700,000 audiences across 12 markets.</div>
       </div>
 
       <!-- Regular -->
@@ -2837,7 +2844,7 @@
         <div>Capitalization: Sentence case</div>
       </div>
       <div style="padding:40px 48px; display:flex; align-items:flex-start;">
-        <div style="font-family:Arial,sans-serif; font-weight:400; font-size:16px; line-height:1.4; color:var(--charcoal); max-width:520px;" data-brand="specimens.fallbackSystem16">Strategus provides essential services to more than 700,000 audiences across 12 markets. When brand fonts are unavailable, Arial maintains clarity and legibility across all system environments.</div>
+        <div style="font-family:Arial,sans-serif; font-weight:400; font-size:16px; line-height:var(--lh-body); color:var(--charcoal); max-width:520px;" data-brand="specimens.fallbackSystem16">Strategus provides essential services to more than 700,000 audiences across 12 markets. When brand fonts are unavailable, Arial maintains clarity and legibility across all system environments.</div>
       </div>
 
     </div>
@@ -2857,7 +2864,7 @@
         <div class="section-body" style="margin-bottom:32px;">
           <p>These typographic errors undermine legibility, brand consistency, and the clarity and consistency of Strategus communications.</p>
         </div>
-        <ul style="margin:0; padding:0; list-style:none; font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; color:var(--charcoal);">
+        <ul style="margin:0; padding:0; list-style:none; font-family:'Inter',sans-serif; font-size:14px; line-height:var(--lh-body); color:var(--charcoal);">
           <li style="padding:12px 0; border-bottom:1px solid var(--light-gray);">Avoid extremely tall leading for both heading and body text</li>
           <li style="padding:12px 0; border-bottom:1px solid var(--light-gray);">Avoid overly tight leading, with crashing ascenders and descenders, for both heading and body text</li>
           <li style="padding:12px 0; border-bottom:1px solid var(--light-gray);">Avoid overly tight tracking, with crashing glyphs</li>
@@ -2901,7 +2908,7 @@
           <!-- 5: Mixed fonts -->
           <div style="background:var(--white); padding:32px 28px; min-height:300px; position:relative; display:flex; flex-direction:column; overflow:hidden;">
             <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; color:var(--charcoal); margin-bottom:20px;">Mixed fonts</div>
-            <div style="font-size:20px; line-height:1.4; color:var(--charcoal);"><span style="font-family:'PolySans',sans-serif; font-weight:700;" data-brand="specimens.avoidTextPart1">Strategus</span> <span style="font-family:Georgia,serif; font-weight:400; font-style:italic;" data-brand="specimens.avoidTextPart2">is a county in the U.S. state of the region, its smallest and most densely populated.</span></div>
+            <div style="font-size:20px; line-height:var(--lh-body); color:var(--charcoal);"><span style="font-family:'PolySans',sans-serif; font-weight:700;" data-brand="specimens.avoidTextPart1">Strategus</span> <span style="font-family:Georgia,serif; font-weight:400; font-style:italic;" data-brand="specimens.avoidTextPart2">is a county in the U.S. state of the region, its smallest and most densely populated.</span></div>
             <div style="position:absolute; top:14px; right:14px; width:18px; height:18px; background:#CC1188; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; line-height:1;">✕</div>
           </div>
 
@@ -2922,11 +2929,11 @@
       <!-- Left: intro content -->
       <div style="display:flex; flex-direction:column; padding:32px; box-sizing:border-box;">
         <div class="section-label">Photography</div>
-        <p style="font-family:'PolySans',sans-serif; font-weight:400; font-size:clamp(24px,3.2vw,48px); line-height:1.0; letter-spacing:-0.02em; color:var(--charcoal); max-width:720px; margin:48px 0 0;">Photography that earns its place.</p>
+        <p style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,48px); line-height:0.9; letter-spacing:-0.02em; color:var(--charcoal); max-width:720px; margin:48px 0 0;">Photography that earns its place.</p>
         <div style="flex:1;"></div>
         <div style="max-width:480px;">
           <p style="font-family:'Inter',sans-serif; font-size:16px; line-height:var(--lh-body); color:var(--charcoal); margin:0;">Strategus imagery should feel real and results-driven, the people, screens, and moments behind connected-TV campaigns. Favor candid teams at work, devices lit up in real living rooms, and clean product/UI shots over staged stock. Photography builds trust by showing how the work actually gets done.</p>
-          <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:1.5;"><strong>Placeholder imagery.</strong> The photos in this section are from the previous brand and stand in only to show layout. Replace with licensed Strategus photography before publishing.</div>
+          <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:var(--lh-body);"><strong>Placeholder imagery.</strong> The photos in this section are from the previous brand and stand in only to show layout. Replace with licensed Strategus photography before publishing.</div>
         </div>
       </div>
       <!-- Right: portrait image -->
@@ -2990,7 +2997,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Shoot organic compositions where the subject matter does not feel staged.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Shoot organic compositions where the subject matter does not feel staged.</div>
           </div>
         </div>
 
@@ -3000,7 +3007,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Play with light and shadow to create visual interest.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Play with light and shadow to create visual interest.</div>
           </div>
         </div>
 
@@ -3010,7 +3017,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Rich and warm color tones make the photography feel human and approachable.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Rich and warm color tones make the photography feel human and approachable.</div>
           </div>
         </div>
 
@@ -3020,7 +3027,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Imperfect and natural colors express a grounded, authentic approach to civic spaces.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Imperfect and natural colors express a grounded, authentic approach to civic spaces.</div>
           </div>
         </div>
 
@@ -3030,7 +3037,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Show the architectural character and texture of Strategus's built environment.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Show the architectural character and texture of Strategus's built environment.</div>
           </div>
         </div>
 
@@ -3040,7 +3047,7 @@
             <div style="width:20px; height:20px; background:var(--dark-blue); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Capture the density and diversity of the brand's neighborhoods at street level.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Capture the density and diversity of the brand's neighborhoods at street level.</div>
           </div>
         </div>
 
@@ -3069,7 +3076,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Don't shoot desaturated, overly stylized landscapes that strip away the brand's warmth and character.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Don't shoot desaturated, overly stylized landscapes that strip away the brand's warmth and character.</div>
           </div>
         </div>
 
@@ -3079,7 +3086,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Avoid blown-out, over-exposed images that feel generic and lack a sense of place.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Avoid blown-out, over-exposed images that feel generic and lack a sense of place.</div>
           </div>
         </div>
 
@@ -3089,7 +3096,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Don't apply heavy color grading or filters that make images feel processed and inauthentic.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Don't apply heavy color grading or filters that make images feel processed and inauthentic.</div>
           </div>
         </div>
 
@@ -3099,7 +3106,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Avoid generic stock skylines that could belong to any city, use photography that is specific to Strategus.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Avoid generic stock skylines that could belong to any city, use photography that is specific to Strategus.</div>
           </div>
         </div>
 
@@ -3109,7 +3116,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Don't shoot from helicopter or drone perspectives that make the brand feel abstract rather than lived-in.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Don't shoot from helicopter or drone perspectives that make the brand feel abstract rather than lived-in.</div>
           </div>
         </div>
 
@@ -3119,7 +3126,7 @@
             <div style="width:20px; height:20px; background:#CC1188; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18 6L6 18M6 6l12 12"/></svg>
             </div>
-            <div style="font-size:13px; color:var(--charcoal); line-height:1.5;">Avoid overly polished real estate or promotional imagery that projects aspiration over reality.</div>
+            <div style="font-size:13px; color:var(--charcoal); line-height:var(--lh-body);">Avoid overly polished real estate or promotional imagery that projects aspiration over reality.</div>
           </div>
         </div>
 
@@ -3133,11 +3140,11 @@
     <div class="portrait-intro" style="display:grid; grid-template-columns:1fr 1fr; height:100dvh; overflow:hidden;">
       <div style="display:flex; flex-direction:column; padding:32px; box-sizing:border-box;">
         <div class="section-label">Applications</div>
-        <p style="font-family:'PolySans',sans-serif; font-weight:400; font-size:clamp(24px,3.2vw,48px); line-height:1.0; letter-spacing:-0.02em; color:var(--charcoal); max-width:720px; margin:48px 0 0;">Every surface. Every scale.</p>
+        <p style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,48px); line-height:0.9; letter-spacing:-0.02em; color:var(--charcoal); max-width:720px; margin:48px 0 0;">Every surface. Every scale.</p>
         <div style="flex:1;"></div>
         <div style="max-width:480px;">
           <p style="font-family:'Inter',sans-serif; font-size:16px; line-height:var(--lh-body); color:var(--charcoal); margin:0;">The Strategus brand is judged in its most everyday moments, a pitch deck slide, a reporting dashboard, a LinkedIn ad, a conference booth. This section shows how the system holds up across the website and product UI, sales and marketing collateral, social and campaign creative, and merchandise.</p>
-          <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:1.5;"><strong>Placeholder mockups.</strong> Application examples here are carried over from the previous brand to show layout only. Replace with real Strategus collateral before publishing.</div>
+          <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:var(--lh-body);"><strong>Placeholder mockups.</strong> Application examples here are carried over from the previous brand to show layout only. Replace with real Strategus collateral before publishing.</div>
         </div>
       </div>
       <div style="position:relative; overflow:hidden;">
@@ -3205,7 +3212,7 @@
       <div style="flex:1;"></div>
       <div class="intro-body">
         <p>The Strategus icon system is built from the same geometric language as the mark. Icons sit on a consistent grid with a shared stroke weight, so they feel native to the brand rather than borrowed from a generic library.</p>
-        <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:1.5; max-width:520px;"><strong>Placeholder icon set.</strong> The icons shown are from the previous brand. Replace with the Strategus icon library before publishing.</div>
+        <div style="margin-top:20px; padding:14px 18px; background:#FFF6F0; border-left:3px solid var(--orange); font-size:14px; color:var(--charcoal); line-height:var(--lh-body); max-width:520px;"><strong>Placeholder icon set.</strong> The icons shown are from the previous brand. Replace with the Strategus icon library before publishing.</div>
       </div>
     </div>
   </div>
@@ -3320,7 +3327,7 @@
 
     <div class="section-label">Data visualisation</div>
     <h2 class="section-title">Chart guidelines</h2>
-    <p style="font-family:'Inter',sans-serif; font-size:16px; color:#333; line-height:1.7; max-width:600px; margin:0 0 48px;">Charts use the Strategus palette in a defined sequence. Primary Blue always anchors the lead data series; additional series draw from the palette in the order shown below.</p>
+    <p style="font-family:'Inter',sans-serif; font-size:16px; color:#333; line-height:var(--lh-body); max-width:600px; margin:0 0 48px;">Charts use the Strategus palette in a defined sequence. Primary Blue always anchors the lead data series; additional series draw from the palette in the order shown below.</p>
 
     <!-- Color sequences -->
     <div style="margin-bottom:48px;">
