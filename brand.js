@@ -310,8 +310,6 @@ function renderPalette(containerId, colors, minHeight) {
         <span>K</span><span>${k}</span>
         <div style="grid-column:1/-1; height:7px;"></div>
         <span>#</span><span>${hex}</span>
-        <div style="grid-column:1/-1; height:7px;"></div>
-        <span>P</span><span>---</span>
       </div>`;
   }
 
