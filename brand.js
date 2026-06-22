@@ -67,9 +67,7 @@ const BRAND = {
      Median is a single .otf. */
   typography: {
     fonts: [
-      // PolySans ships only the Median weight here; declare a weight RANGE so any
-      // requested weight renders the real Median glyphs (no faux-bold synthesis).
-      { family: "PolySans", weight: "100 900", file: "fonts/PolySansTrial-Median.otf" },
+      { family: "PolySans", weight: "100 900", file: "fonts/Polysans - Licensed/woff2/PolySans-Median.woff2" },
       { family: "Inter",    weight: 400, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
       { family: "Inter",    weight: 600, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
       { family: "Inter",    weight: 700, file: "fonts/Inter-VariableFont_opsz,wght.ttf" },
@@ -139,6 +137,12 @@ const BRAND = {
         { label: "Google fallback",  id: "google-fallback" },
         { label: "System fallback",  id: "type-fallback" },
         { label: "What to avoid",    id: "type-avoid" },
+      ],
+    },
+    {
+      group: "Data visualisation",
+      items: [
+        { label: "Chart guidelines", id: "dataviz-charts" },
       ],
     },
   ],
