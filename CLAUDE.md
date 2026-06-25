@@ -36,7 +36,25 @@ Any structural improvements made here (CSS fixes, mobile patterns, clearspace co
 3. What version number and date should appear on the cover? (e.g. "Version 1.0 / June 2026")
 4. Who is listed as having prepared this? (e.g. "Paper Tiger")
 
-### Group 2 — Colors
+### Group 1.5 — Figma Brand Tokens (ask immediately after Group 1)
+Ask: "Do you have a Figma Brand Tokens file? If so, paste the link here and I'll extract colors automatically."
+
+**If a Figma link is provided, extract colors via the Figma MCP instead of asking Group 2 manually:**
+
+1. Extract the file key from the URL (the segment after `/design/`)
+2. Call `get_metadata` with that file key and no nodeId to list pages
+3. Find the "Colors" page and call `get_metadata` again with that page's id
+4. Parse the returned XML:
+   - Find all `<frame>` nodes that have exactly 3 `<text>` children
+   - The 3 text children are always in order: color name, hex value, token key (e.g. "tokens/primary-blue")
+   - Identify primary vs secondary by comparing each frame's Y position to the Y position of the `<text>` node named "SECONDARY PALETTE" — frames above it are primary, frames at or below it are secondary
+   - Strip "tokens/" from the token key to get the CSS custom property name (e.g. "primary-blue")
+   - Compute textColor automatically: use `#FFFFFF` if hex luminance < 0.18, `#000000` if >= 0.18
+5. Skip Group 2 entirely — you have all color data. Tell the user what was extracted and confirm before continuing.
+
+**If no Figma link is provided, ask Group 2 manually as normal.**
+
+### Group 2 — Colors (skip if extracted from Figma)
 5. What are the PRIMARY brand colors? For each one, provide: name + hex value. (e.g. "Primary Blue #1CACFF, Dark Blue #00346C, Black #000000, White #FFFFFF")
 6. Are there SECONDARY brand colors? If yes, provide: name + hex value for each. (e.g. "Orange #F8682C, Purple #6D2EE2")
 7. For each color, does black or white text look better on top of it?
