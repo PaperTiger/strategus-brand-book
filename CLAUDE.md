@@ -37,41 +37,80 @@ Any structural improvements made here (CSS fixes, mobile patterns, clearspace co
 4. Who is listed as having prepared this? (e.g. "Paper Tiger")
 
 ### Group 1.5 — Figma Brand Tokens (ask immediately after Group 1)
-Ask: "Do you have a Figma Brand Tokens file? If so, paste the link here and I'll extract colors automatically."
+Ask: "Do you have a Figma Brand Tokens file? If so, paste the link here and I'll extract colors, fonts, type specimens, and logos automatically."
 
-**If a Figma link is provided, extract colors via the Figma MCP instead of asking Group 2 manually:**
+**If a Figma link is provided, extract everything via the Figma MCP. This replaces Groups 2, 3, 4, and 5 entirely.**
 
-1. Extract the file key from the URL (the segment after `/design/`)
-2. Call `get_metadata` with that file key and no nodeId to list pages
-3. Find the "Colors" page and call `get_metadata` again with that page's id
-4. Parse the returned XML:
-   - Find all `<frame>` nodes that have exactly 3 `<text>` children
-   - The 3 text children are always in order: color name, hex value, token key (e.g. "tokens/primary-blue")
-   - Identify primary vs secondary by comparing each frame's Y position to the Y position of the `<text>` node named "SECONDARY PALETTE" — frames above it are primary, frames at or below it are secondary
-   - Strip "tokens/" from the token key to get the CSS custom property name (e.g. "primary-blue")
-   - Compute textColor automatically: use `#FFFFFF` if hex luminance < 0.18, `#000000` if >= 0.18
-5. Skip Group 2 entirely — you have all color data. Tell the user what was extracted and confirm before continuing.
+The Brand Tokens file has five pages. To get the page IDs, call `get_metadata` with the file key and no nodeId — if it only returns one page, call it again with nodeId `0:2` (the error response will list all pages). Then extract from each page:
 
-**If no Figma link is provided, ask Group 2 manually as normal.**
+---
+
+#### Figma extraction — Colors page
+
+1. Call `get_metadata` with the Colors page id
+2. Find all `<frame>` nodes with exactly 3 `<text>` children — in order: color name, hex value, token key (e.g. "tokens/primary-blue")
+3. Separate primary vs secondary by each frame's Y position relative to the `<text>` node named "SECONDARY PALETTE" — frames above it are primary, at or below are secondary
+4. Strip "tokens/" from the token key to get the CSS custom property name
+5. Compute textColor: `#FFFFFF` if hex luminance < 0.18, `#000000` if ≥ 0.18
+
+#### Figma extraction — Typography page
+
+1. Call `get_metadata` with the Typography page id
+2. Find `<frame>` nodes whose name starts with `_section_`:
+   - `_section_DISPLAY …` → parse font name after the dash → `displayFont`
+   - `_section_BODY …` → parse font name after the dash → `bodyFont`
+3. For each size frame (name = "96px", "73px", "64px", etc.):
+   - The frame name gives the pixel size
+   - The second `<text>` child is the specimen copy
+   - Map to `specimens` keys: `display96`, `display73`, `display64`, `display48`, `headline42`, `headline32`, `headline24`, `headline21`, `body18`, `body16`, `body14`, `body12`
+4. Ask the user whether each font is a local file or Google Font, and for local fonts, the filenames
+
+#### Figma extraction — Logos page
+
+1. Call `get_metadata` with the Logos page id
+2. Skip any `<frame>` whose name starts with `_` (those are instructions)
+3. Each remaining frame name is the exact SVG filename (without `.svg`)
+4. Export each frame as SVG using the Figma MCP export tools and save to `images/logos/`
+5. Infer the config assignments from the filename:
+   - Contains `full-dark` → `sidebarLogoImage`
+   - Contains `mark` and not `white` and not `light` → `coverSealImage`
+   - If ambiguous, show the list and ask the user to confirm
+
+#### Figma extraction — Color Pairings page
+
+1. Call `get_metadata` with the Color Pairings page id
+2. Each top-level `<frame>` represents one approved pairing. The frame `name` is `"Background / Text"` (e.g. `"Primary Blue / Dark Blue"`)
+3. Inside each frame there is a nested `<frame>` whose `name` is the logo filename to use on that background (without `.svg`)
+4. Parse each pairing as:
+   - `bg`: first segment before ` / ` — match to a color token name
+   - `text`: second segment after ` / ` — match to a color token name
+   - `logo`: the nested frame name + `.svg` (file lives in `images/logos/`)
+5. Use this data to populate the **Color combinations** section of `index.html` — replace the hardcoded combination cards with cards generated from this list. Each card shows the background color, the correct logo on top, and the text color label.
+
+---
+
+After extracting, tell the user what was found (colors count, font names, logo filenames) and confirm before writing any files. Then skip Groups 2–5 and go straight to Group 6.
+
+**If no Figma link is provided, ask Groups 2–5 manually as normal.**
 
 ### Group 2 — Colors (skip if extracted from Figma)
 5. What are the PRIMARY brand colors? For each one, provide: name + hex value. (e.g. "Primary Blue #1CACFF, Dark Blue #00346C, Black #000000, White #FFFFFF")
 6. Are there SECONDARY brand colors? If yes, provide: name + hex value for each. (e.g. "Orange #F8682C, Purple #6D2EE2")
 7. For each color, does black or white text look better on top of it?
 
-### Group 3 — Typography
+### Group 3 — Typography (skip if extracted from Figma)
 8. What font is used for headlines and display text? Is the font file available locally, or should it use a Google Font?
 9. What font is used for body text? Same question — local file or Google Font?
 10. If fonts are local files, what are the filenames? (They should be placed in the `fonts/` folder.)
 
-### Group 4 — Logos
+### Group 4 — Logos (skip if extracted from Figma)
 11. What logo files are available? List the filenames — they should be placed in `images/logos/`. (e.g. "acme-logo-dark.svg, acme-logo-light.svg, acme-logo-mark.svg")
 12. Which file is the "dark" full logo (used on light backgrounds)?
 13. Which file is the "light" full logo (used on bright/color backgrounds)?
 14. Which file is the "white" full logo (used on dark backgrounds)?
 15. Which file is the standalone mark/icon (used as the cover page seal)?
 
-### Group 5 — Type specimens (the big display text on the Typography pages)
+### Group 5 — Type specimens (skip if extracted from Figma)
 16. What short word or phrase should appear in the largest display size? (e.g. the company name — "Strategus")
 17. What 2–4 word phrase captures what the company does? (e.g. "Connected audio" or "Award-winning creative")
 18. What is a short tagline or value proposition sentence? (e.g. "Driving full-funnel results")
