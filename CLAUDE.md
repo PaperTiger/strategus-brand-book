@@ -26,6 +26,32 @@ Any structural improvements made here (CSS fixes, mobile patterns, clearspace co
 
 ---
 
+## Exporting a new section to the template
+
+If the user asks to port a section back to the master template, produce an export package with exactly these three items:
+
+**1. The component file** — a `.tsx` file ready to drop into `src/sections/<name>/` in the template:
+- Replace every Strategus-specific string (company name, copy, color tokens, logo paths) with a reference to `brand.config` (e.g. `brand.meta.client`, `brand.colors.primary[0].hex`)
+- If a new config field is needed, use a placeholder name like `brand.XXX` and document it in item 2
+- Note: this book is the old single-file format (`index.html` + `brand.js`). The component must be converted to a React functional component — extract the relevant HTML block and convert it to JSX
+
+**2. A config diff** — every new field that needs to be added to the template's `brand.config.ts`:
+```
+Field: <field.path>
+Type: <TypeScript type>
+Default: <safe default value>
+Description: <one line>
+```
+
+**3. A nav entry** — the exact object to append to the `nav` array in `brand.config.ts`:
+```ts
+{ label: 'Section name', id: 'section-id', page: 'ComponentName' }
+```
+
+Present these clearly so the user can upload the component file and paste the diffs into the template session.
+
+---
+
 ## Starting a new brand book for a new client
 
 **If the user says they want to set up a new brand book, ask these questions one group at a time. Wait for the answers before moving to the next group. Do not start editing files until all questions are answered.**
