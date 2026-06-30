@@ -74,10 +74,12 @@ The Brand Tokens file has five pages. To get the page IDs, call `get_metadata` w
 #### Figma extraction — Colors page
 
 1. Call `get_metadata` with the Colors page id
-2. Find all `<frame>` nodes with exactly 3 `<text>` children — in order: color name, hex value, token key (e.g. "tokens/primary-blue")
+2. Find all `<frame>` nodes that have at least 1 `<text>` child and a solid fill — these are the color swatches
 3. Separate primary vs secondary by each frame's Y position relative to the `<text>` node named "SECONDARY PALETTE" — frames above it are primary, at or below are secondary
-4. Strip "tokens/" from the token key to get the CSS custom property name
-5. Compute textColor: `#FFFFFF` if hex luminance < 0.18, `#000000` if ≥ 0.18
+4. Extract the hex value from the frame's solid fill color (convert RGB 0–1 to hex). Do not read hex from a text label.
+5. The color name is the first `<text>` child
+6. Derive the CSS custom property name from the color name: lowercase and replace spaces with hyphens (e.g. "Pale Blue" → "pale-blue"). If a second text child exists and is non-empty, use it instead.
+7. Compute textColor: `#FFFFFF` if hex luminance < 0.18, `#000000` if ≥ 0.18
 
 #### Figma extraction — Typography page
 
