@@ -2326,7 +2326,7 @@
         <p><strong>PolySans for leadership.</strong> PolySans carries all large headline and display roles. It is set in sentence case, tracked tight, and never used at body sizes. Headlines are never set in all caps.</p>
         <p><strong>No personality fonts.</strong> No decorative, script, or display-only typefaces are permitted within the brand system. Functional elegance is the standard.</p>
       </div>
-      <a href="downloads/strategus-fonts.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; padding:12px 20px; text-decoration:none; margin-top:24px;">
+      <a href="fonts/polysans.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; padding:12px 20px; text-decoration:none; margin-top:24px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PolySans
       </a>
@@ -2445,7 +2445,7 @@
       <div class="section-body">
         <p>The type system is shown across its full range. PolySans anchors display and headline work, always in sentence case. Inter carries body copy, labels, and all supporting text.</p>
       </div>
-      <a href="downloads/strategus-fonts.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; padding:12px 20px; text-decoration:none; margin-top:24px;">
+      <a href="fonts/polysans.zip" download style="display:inline-flex; align-items:center; gap:8px; background:var(--charcoal); color:var(--white); font-family:'PolySans',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.06em; padding:12px 20px; text-decoration:none; margin-top:24px;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PolySans
       </a>
@@ -2459,7 +2459,7 @@
         <div style="font-family:'PolySans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; color:var(--charcoal); margin-bottom:24px;">PolySans · Median · Display</div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">96</div>
-          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(40px,10vw,96px); line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal);" data-brand="specimens.display96">HCNJ</div>
+          <div style="font-family:'PolySans',sans-serif; font-weight:700; font-size:clamp(40px,10vw,96px); line-height:0.9; letter-spacing:-0.025em; color:var(--charcoal);" data-brand="specimens.display96">Strategus</div>
         </div>
         <div style="display:flex; align-items:baseline; gap:24px; margin-bottom:16px; flex-wrap:wrap;">
           <div style="font-size:11px; color:var(--charcoal); font-family:'Inter',sans-serif; min-width:32px; flex-shrink:0;">73</div>
@@ -3629,18 +3629,6 @@
     if (parent) parent.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
-  const hcnjChildIds = new Set(['hcnj-horizontal','hcnj-text-lockup','hcnj-text-only']);
-  const hcnjGroup = document.getElementById('nav-hcnj-group');
-  const hcnjSub   = document.getElementById('nav-hcnj-sub');
-
-  function setHcnjExpanded(open) {
-    if (!hcnjGroup || !hcnjSub) return;
-    hcnjGroup.classList.toggle('open', open);
-    hcnjSub.classList.toggle('open', open);
-    const parent = hcnjGroup.querySelector('.nav-parent');
-    if (parent) parent.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-
   const landscapeChildIds = new Set(['photo-landscape-examples','photo-landscape-dos','photo-landscape-donts']);
   const landscapeGroup = document.getElementById('nav-landscape-group');
   const landscapeSub   = document.getElementById('nav-landscape-sub');
@@ -3681,7 +3669,6 @@
     // Auto-expand groups when any child page is active
     if (fgChildIds.has(targetId)) setFgExpanded(true);
     if (fullLogoChildIds.has(targetId)) setFullLogoExpanded(true);
-    if (hcnjChildIds.has(targetId)) setHcnjExpanded(true);
     if (landscapeChildIds.has(targetId)) setLandscapeExpanded(true);
     if (communityPhotoChildIds.has(targetId)) setCommunityPhotoExpanded(true);
     // On mobile, open the section containing the active nav link
@@ -3724,10 +3711,6 @@
         const isOpen = fullLogoGroup && fullLogoGroup.classList.contains('open');
         setFullLogoExpanded(!isOpen);
       }
-      if (target === 'hcnj-horizontal') {
-        const isOpen = hcnjGroup && hcnjGroup.classList.contains('open');
-        setHcnjExpanded(!isOpen);
-      }
       if (target === 'photo-landscape-examples') {
         const isOpen = landscapeGroup && landscapeGroup.classList.contains('open');
         setLandscapeExpanded(!isOpen);
@@ -3751,8 +3734,6 @@
         setFgExpanded(!fgGroup.classList.contains('open'));
       } else if (expandable.id === 'nav-full-logo-group') {
         setFullLogoExpanded(!fullLogoGroup.classList.contains('open'));
-      } else if (expandable.id === 'nav-hcnj-group') {
-        setHcnjExpanded(!hcnjGroup.classList.contains('open'));
       } else if (expandable.id === 'nav-landscape-group') {
         setLandscapeExpanded(!landscapeGroup.classList.contains('open'));
       } else if (expandable.id === 'nav-community-photo-group') {

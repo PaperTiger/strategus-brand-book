@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────
-   Hudson County Brand Configuration
+   Strategus Brand Configuration
    Single source of truth for tokens, typography, color data, and nav.
 ───────────────────────────────────────────────────────────────── */
 const BRAND = {
