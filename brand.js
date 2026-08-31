@@ -80,18 +80,18 @@ const BRAND = {
   /* ── Color palettes ───────────────────────────────────────── */
   colors: {
     primary: [
-      { name: "Primary Blue", hex: "#1CACFF", textColor: "#000000" },
-      { name: "Dark Blue",    hex: "#00346C", textColor: "#FFFFFF" },
-      { name: "Black",        hex: "#000000", textColor: "#FFFFFF" },
-      { name: "White",        hex: "#FFFFFF", textColor: "#000000" },
+      { name: "Primary Blue", hex: "#1CACFF", textColor: "#000000", cmyk: [64, 21, 0, 0] },
+      { name: "Dark Blue",    hex: "#00346C", textColor: "#FFFFFF", cmyk: [100, 88, 31, 18] },
+      { name: "Black",        hex: "#000000", textColor: "#FFFFFF", cmyk: [72, 68, 67, 88] },
+      { name: "White",        hex: "#FFFFFF", textColor: "#000000", cmyk: [0, 0, 0, 0] },
     ],
     secondary: [
-      { name: "Orange",     hex: "#F8682C", textColor: "#000000" },
-      { name: "Purple",     hex: "#6D2EE2", textColor: "#FFFFFF" },
-      { name: "Pale Green", hex: "#C5FF98", textColor: "#000000" },
-      { name: "Green",      hex: "#27C35D", textColor: "#000000" },
-      { name: "Fuscia",     hex: "#CC1188", textColor: "#FFFFFF" },
-      { name: "Gray",       hex: "#F3F3F3", textColor: "#000000" },
+      { name: "Orange",     hex: "#F8682C", textColor: "#000000", cmyk: [0, 74, 92, 0] },
+      { name: "Purple",     hex: "#6D2EE2", textColor: "#FFFFFF", cmyk: [71, 80, 0, 0] },
+      { name: "Pale Green", hex: "#C5FF98", textColor: "#000000", cmyk: [23, 0, 55, 0] },
+      { name: "Green",      hex: "#27C35D", textColor: "#000000", cmyk: [72, 0, 87, 0] },
+      { name: "Fuscia",     hex: "#CC1188", textColor: "#FFFFFF", cmyk: [17, 100, 5, 0] },
+      { name: "Gray",       hex: "#F3F3F3", textColor: "#000000", cmyk: [3, 3, 3, 0] },
     ],
   },
 
@@ -296,7 +296,10 @@ function hexToCmyk(hex) {
 function renderPalette(containerId, colors, minHeight) {
   function colorValues(c) {
     const [r, g, b] = hexToRgb(c.hex);
-    const [cm, m, y, k] = hexToCmyk(c.hex);
+    // Prefer the measured build written by scripts/convert-cmyk.mjs. The formula
+    // below is a fallback for colours not yet converted; it is not profile-aware
+    // and must not be handed to a printer.
+    const [cm, m, y, k] = c.cmyk ?? hexToCmyk(c.hex);
     const hex = c.hex.replace("#", "");
     return `
       <div style="display:grid; grid-template-columns:14px 1fr; gap:0 10px; line-height:1.1;">
